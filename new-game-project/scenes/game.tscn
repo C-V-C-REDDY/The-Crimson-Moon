@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://yicge48108e0"]
+
+[ext_resource type="PackedScene" uid="uid://bdi0nuw7dhuip" path="res://scenes/luna.tscn" id="1_uwrxv"]
+
+[node name="Game" type="Node"]
+
+[node name="Luna" parent="." instance=ExtResource("1_uwrxv")]
