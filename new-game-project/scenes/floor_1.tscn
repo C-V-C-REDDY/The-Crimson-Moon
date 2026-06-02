@@ -1,0 +1,330 @@
+[gd_scene load_steps=31 format=3 uid="uid://brrmw7gk2yrkq"]
+
+[ext_resource type="Texture2D" uid="uid://7uvm8lnjsey3" path="res://assets/sprites/doors_lever_chest_animation.png" id="1_425vd"]
+[ext_resource type="Script" uid="uid://dm5q0v0rpkyhx" path="res://scenes/floor_1.gd" id="1_sg3qp"]
+[ext_resource type="Texture2D" uid="uid://jj0uu3268b3g" path="res://assets/sprites/Moon1.png" id="3_s8rno"]
+[ext_resource type="Texture2D" uid="uid://c8cv1nhj216f3" path="res://assets/sprites/fire_animation.png" id="3_sg3qp"]
+[ext_resource type="Texture2D" uid="uid://buts21gbjk3o0" path="res://assets/sprites/deco2.png" id="4_sg3qp"]
+[ext_resource type="Texture2D" uid="uid://d1ch0t0qltoxk" path="res://assets/sprites/deco3.png" id="6_2mdf6"]
+
+[sub_resource type="TileSet" id="TileSet_dwxbp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mdf6"]
+atlas = ExtResource("1_425vd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtmew"]
+atlas = ExtResource("1_425vd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31hr6"]
+atlas = ExtResource("1_425vd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x2hd"]
+atlas = ExtResource("1_425vd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkyk8"]
+atlas = ExtResource("1_425vd")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1s0d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mdf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtmew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31hr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7x2hd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkyk8")
+}],
+"loop": true,
+"name": &"Door",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onrg3"]
+atlas = ExtResource("3_sg3qp")
+region = Rect2(132, 0, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dlj7"]
+atlas = ExtResource("3_sg3qp")
+region = Rect2(132, 48, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unlte"]
+atlas = ExtResource("3_sg3qp")
+region = Rect2(132, 96, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ddov"]
+atlas = ExtResource("3_sg3qp")
+region = Rect2(132, 144, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yacar"]
+atlas = ExtResource("3_sg3qp")
+region = Rect2(132, 192, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go15y"]
+atlas = ExtResource("3_sg3qp")
+region = Rect2(132, 240, 44, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s4g8o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onrg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dlj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unlte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ddov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yacar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go15y")
+}],
+"loop": true,
+"name": &"fire2",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1s0d"]
+atlas = ExtResource("3_sg3qp")
+region = Rect2(44, 0, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5kxv"]
+atlas = ExtResource("3_sg3qp")
+region = Rect2(44, 48, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0cd7"]
+atlas = ExtResource("3_sg3qp")
+region = Rect2(44, 96, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rel8"]
+atlas = ExtResource("3_sg3qp")
+region = Rect2(44, 144, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mto3v"]
+atlas = ExtResource("3_sg3qp")
+region = Rect2(44, 192, 44, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggb2r"]
+atlas = ExtResource("3_sg3qp")
+region = Rect2(44, 240, 44, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6j26s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1s0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5kxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0cd7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rel8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mto3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggb2r")
+}],
+"loop": true,
+"name": &"light",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_3t618"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Moon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.7411765), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_onrg3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Moon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0dlj7"]
+_data = {
+&"RESET": SubResource("Animation_onrg3"),
+&"new_animation": SubResource("Animation_3t618")
+}
+
+[node name="Floor1" type="Node"]
+script = ExtResource("1_sg3qp")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_dwxbp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -15
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DoorAnimation" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(640, 686)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_y1s0d")
+animation = &"Door"
+frame = 4
+frame_progress = 1.0
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 0.13, 0.13, 1)
+position = Vector2(605, 624)
+sprite_frames = SubResource("SpriteFrames_s4g8o")
+animation = &"fire2"
+frame_progress = 0.025686992
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 0.13, 0.13, 1)
+position = Vector2(679, 625)
+sprite_frames = SubResource("SpriteFrames_s4g8o")
+animation = &"fire2"
+frame_progress = 0.028654052
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(580, 632)
+sprite_frames = SubResource("SpriteFrames_6j26s")
+animation = &"light"
+frame_progress = 0.6712027
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(720, 634)
+sprite_frames = SubResource("SpriteFrames_6j26s")
+animation = &"light"
+frame_progress = 0.29467937
+
+[node name="Moon" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(640, 78.99999)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_s8rno")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_0dlj7")
+}
+
+[node name="Clovers" type="Sprite2D" parent="."]
+position = Vector2(569, 684)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_sg3qp")
+
+[node name="Clovers2" type="Sprite2D" parent="."]
+position = Vector2(711, 684)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_sg3qp")
+
+[node name="Deco3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(627, 348)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_2mdf6")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-3, 0)
+amount = 12
+lifetime = 2.0
+emission_shape = 1
+emission_sphere_radius = 0.01
+spread = 53.0
+gravity = Vector2(980, 640)
+initial_velocity_min = 133.33
+initial_velocity_max = 600.0
+scale_amount_min = 0.0
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(-3, 157)
+amount = 10
+lifetime = 2.0
+emission_shape = 1
+emission_sphere_radius = 0.01
+spread = 53.0
+gravity = Vector2(980, 640)
+initial_velocity_min = 133.33
+initial_velocity_max = 600.0
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+position = Vector2(-2, 347)
+amount = 10
+lifetime = 2.0
+emission_shape = 1
+emission_sphere_radius = 0.01
+spread = 53.0
+gravity = Vector2(980, 640)
+initial_velocity_min = 133.33
+initial_velocity_max = 600.0
+
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="."]
+position = Vector2(-1, 571)
+amount = 10
+lifetime = 2.0
+emission_shape = 1
+emission_sphere_radius = 0.01
+spread = 53.0
+gravity = Vector2(980, 640)
+initial_velocity_min = 133.33
+initial_velocity_max = 600.0
+
+[node name="CPUParticles2D5" type="CPUParticles2D" parent="."]
+position = Vector2(2, 253)
+amount = 10
+lifetime = 2.0
+emission_shape = 1
+emission_sphere_radius = 0.01
+spread = 53.0
+gravity = Vector2(980, 640)
+initial_velocity_min = 133.33
+initial_velocity_max = 600.0
