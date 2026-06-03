@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://p5d45833b4ap" path="res://assets/sprites/Blast.png" id="3_ws7p0"]
 [ext_resource type="Texture2D" uid="uid://x52yktdui0vr" path="res://assets/sprites/Luna_Boss.png" id="4_ecdxc"]
 [ext_resource type="Texture2D" uid="uid://t8ak5i53303d" path="res://assets/sprites/Title.png" id="5_qls88"]
-[ext_resource type="Texture2D" uid="uid://jdjq7kkuitgu" path="res://assets/sprites/start.png" id="6_pcj7n"]
-[ext_resource type="Texture2D" uid="uid://tidl8rviunva" path="res://assets/sprites/Start_Hover.png" id="7_bdg0b"]
+[ext_resource type="FontFile" uid="uid://dc2o8oolrj2pq" path="res://assets/sprites/MetalMania-Regular.ttf" id="7_ws7p0"]
+[ext_resource type="Texture2D" uid="uid://4ubhgqrjd5j1" path="res://assets/sprites/StartUI.png" id="9_ecdxc"]
 [ext_resource type="Texture2D" uid="uid://c6mhr8xdohprm" path="res://assets/sprites/clover.png" id="9_ws7p0"]
 
 [sub_resource type="Animation" id="Animation_ka6nf"]
@@ -99,19 +99,19 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("LunaBoss:position")
+tracks/7/path = NodePath("LunaBoss:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(640, 420)]
+"update": 1,
+"values": [true]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("LunaBoss:visible")
+tracks/8/path = NodePath("Tiltle:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -123,19 +123,19 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Tiltle:visible")
+tracks/9/path = NodePath("Sprite2D2:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [0.0]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Sprite2D:rotation")
+tracks/10/path = NodePath("Sprite2D3:rotation")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -147,19 +147,19 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Sprite2D2:rotation")
+tracks/11/path = NodePath("Sprite2D5:scale")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(0.1, 0.1)]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Sprite2D3:rotation")
+tracks/12/path = NodePath("Sprite2D5:rotation")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -171,50 +171,62 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Sprite2D4:rotation")
+tracks/13/path = NodePath("Start:position")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(1023, 357)]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Sprite2D5:scale")
+tracks/14/path = NodePath("StartBt:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.1, 0.1)]
+"values": [Vector2(937, 340)]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Sprite2D5:rotation")
+tracks/15/path = NodePath("StartBt2:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(936, 482)]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("LunaBoss2:visible")
+tracks/16/path = NodePath("INFO:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(1023, 499)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("LunaBoss:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ecdxc"]
@@ -226,110 +238,122 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LunaBoss:position")
+tracks/0/path = NodePath("LunaBoss:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(640, 420), Vector2(640, 410), Vector2(640, 420)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("LunaBoss:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:rotation")
+tracks/2/path = NodePath("Sprite2D3:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 4.363323, 0.0]
+"values": [0.0, 6.283185307179586]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D2:rotation")
+tracks/3/path = NodePath("Sprite2D5:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 4.363323, 0.0]
+"values": [Vector2(0.1, 0.1), Vector2(0.2, 0.2), Vector2(0.1, 0.1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D3:rotation")
+tracks/4/path = NodePath("Sprite2D5:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 4.363323, 0.0]
+"values": [0.0, 6.283185307179586]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D4:rotation")
+tracks/5/path = NodePath("Start:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 4.363323, 0.0]
+"values": [Vector2(1023, 357), Vector2(1023, 347), Vector2(1023, 357)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sprite2D5:scale")
+tracks/6/path = NodePath("StartBt:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.1, 0.1), Vector2(0.2, 0.2), Vector2(0.1, 0.1)]
+"values": [Vector2(937, 340), Vector2(937, 330), Vector2(937, 340)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Sprite2D5:rotation")
+tracks/7/path = NodePath("StartBt2:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 6.2831855, 0.0]
+"values": [Vector2(936, 482), Vector2(936, 472), Vector2(936, 482)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("LunaBoss2:visible")
+tracks/8/path = NodePath("INFO:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0.5, 0.8600593, 1),
+"times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, false]
+"update": 0,
+"values": [Vector2(1023, 499), Vector2(1023, 489), Vector2(1023, 499)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LunaBoss:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_xfy2r"]
@@ -499,27 +523,38 @@ libraries = {
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -5
-offset_left = 2.0
-offset_top = -2.0
-offset_right = 1292.0
-offset_bottom = 719.0
+offset_left = 14.0
+offset_top = 4.0
+offset_right = 1304.0
+offset_bottom = 725.0
 color = Color(3.6098063e-06, 0.11942298, 0.38352007, 1)
 
-[node name="StartBt" type="TextureButton" parent="."]
+[node name="StartBt" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 878.0
-offset_top = 350.0
-offset_right = 1555.0
-offset_bottom = 719.0
+modulate = Color(0, 1, 0.99607843, 1)
+z_index = 1
+offset_left = 937.0
+offset_top = 340.0
+offset_right = 1299.0
+offset_bottom = 432.0
 scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("6_pcj7n")
-texture_hover = ExtResource("7_bdg0b")
+theme_override_fonts/font = ExtResource("7_ws7p0")
+theme_override_font_sizes/font_size = 61
+text = "START"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(634, 218)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_ws7p0")
+[node name="StartBt2" type="Button" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 1, 0.99607843, 1)
+z_index = 1
+offset_left = 936.0
+offset_top = 482.0
+offset_right = 1298.0
+offset_bottom = 571.9981
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("7_ws7p0")
+theme_override_font_sizes/font_size = 61
+text = "INFO
+"
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(639, 136.99998)
@@ -531,17 +566,21 @@ position = Vector2(592.99994, 137)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("9_ws7p0")
 
-[node name="Sprite2D4" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(0.62352943, 1, 1, 1)
-position = Vector2(760, 292.99997)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_ws7p0")
-
 [node name="Sprite2D5" type="Sprite2D" parent="."]
 position = Vector2(576, 301)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_ws7p0")
 
+[node name="Start" type="Sprite2D" parent="."]
+position = Vector2(1023, 357)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_ecdxc")
+
+[node name="INFO" type="Sprite2D" parent="."]
+position = Vector2(1023, 499)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_ecdxc")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="StartBt" to="." method="_on_start_bt_pressed"]
+[connection signal="pressed" from="StartBt2" to="." method="_on_start_bt_pressed"]

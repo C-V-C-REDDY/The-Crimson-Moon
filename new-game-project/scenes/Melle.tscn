@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://cxjuvkgwiwgtn"]
+
+[ext_resource type="Script" uid="uid://ceudvjsniat7p" path="res://Scripts/melle.gd" id="1_cyq12"]
+[ext_resource type="Texture2D" uid="uid://1mfk3g1x0co0" path="res://assets/sprites/Melle.png" id="1_fpil3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35x25"]
+atlas = ExtResource("1_fpil3")
+region = Rect2(0, 0, 112, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljth2"]
+atlas = ExtResource("1_fpil3")
+region = Rect2(112, 0, 112, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_figho"]
+atlas = ExtResource("1_fpil3")
+region = Rect2(224, 0, 112, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu002"]
+atlas = ExtResource("1_fpil3")
+region = Rect2(336, 0, 112, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdfjg"]
+atlas = ExtResource("1_fpil3")
+region = Rect2(448, 0, 112, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v66fi"]
+atlas = ExtResource("1_fpil3")
+region = Rect2(560, 0, 112, 369)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ife42"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35x25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljth2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_figho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cu002")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdfjg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v66fi")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fpil3"]
+radius = 22.0
+height = 122.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyq12"]
+radius = 44.0
+height = 158.0
+
+[node name="Melle" type="CharacterBody2D" groups=["enemies"]]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_cyq12")
+
+[node name="MelleAnim" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ife42")
+animation = &"Attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(18, -23)
+shape = SubResource("CapsuleShape2D_fpil3")
+debug_color = Color(0.9198584, 0.2827947, 0, 0.41960785)
+
+[node name="HitBox" type="Area2D" parent="." groups=["enemy_hit"]]
+unique_name_in_owner = true
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(13, -12)
+shape = SubResource("CapsuleShape2D_cyq12")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

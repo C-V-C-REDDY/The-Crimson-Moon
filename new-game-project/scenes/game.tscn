@@ -1,12 +1,227 @@
-[gd_scene load_steps=3 format=3 uid="uid://yicge48108e0"]
+[gd_scene load_steps=23 format=3 uid="uid://yicge48108e0"]
 
+[ext_resource type="Script" uid="uid://bfuxyjqdes301" path="res://Scripts/game.gd" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://bdi0nuw7dhuip" path="res://scenes/luna.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://brrmw7gk2yrkq" path="res://scenes/floor_1.tscn" id="2_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://cb2p0wsrdcvcx" path="res://assets/sprites/FloorCount.png" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://cnfaigt2m3qv2" path="res://assets/sprites/HP.png" id="5_p57ef"]
+[ext_resource type="Texture2D" uid="uid://blhc75qyaslda" path="res://assets/sprites/clovers.png" id="6_gee14"]
+[ext_resource type="Texture2D" uid="uid://dgv17s2qkn5g6" path="res://assets/sprites/Mana.png" id="7_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://ddk0yx2icavhi" path="res://assets/sprites/Dash.png" id="8_vtaks"]
+[ext_resource type="Texture2D" uid="uid://dly665r6fyadd" path="res://assets/sprites/Stealth.png" id="9_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://c6sbboi45fxtb" path="res://assets/sprites/Teleport.png" id="10_dinhu"]
+[ext_resource type="PackedScene" uid="uid://cxjuvkgwiwgtn" path="res://scenes/Melle.tscn" id="11_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://5c223puawwon" path="res://scenes/ninja.tscn" id="12_dinhu"]
+[ext_resource type="PackedScene" uid="uid://2mr652vv4cpf" path="res://scenes/mage.tscn" id="13_kvuet"]
+
+[sub_resource type="Animation" id="Animation_p57ef"]
+resource_name = "Clover+"
+
+[sub_resource type="Animation" id="Animation_kvpfn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FloorCount:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dinhu"]
+resource_name = "clover"
+length = 15.0
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_vtaks"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FloorCount:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.6784314), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kvuet"]
+_data = {
+&"Clover+": SubResource("Animation_p57ef"),
+&"RESET": SubResource("Animation_kvpfn"),
+&"clover": SubResource("Animation_dinhu"),
+&"idle": SubResource("Animation_vtaks")
+}
+
+[sub_resource type="Animation" id="Animation_gee14"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%HpFAnim/../Clovers:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_u5sy4"]
+resource_name = "clover"
+length = 15.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%HpFAnim/../Clovers:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0tnpc"]
+_data = {
+&"RESET": SubResource("Animation_gee14"),
+&"clover": SubResource("Animation_u5sy4")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dinhu"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 6.0
+}]
 
 [node name="Game" type="Node"]
+script = ExtResource("1_u5sy4")
 
 [node name="Luna" parent="." instance=ExtResource("1_uwrxv")]
 z_index = 5
-position = Vector2(378, 311)
+position = Vector2(640, 666)
 
 [node name="Floor1" parent="." instance=ExtResource("2_yqjtg")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="FloorCount" type="Sprite2D" parent="UI"]
+position = Vector2(1172, 57)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_lnu2h")
+
+[node name="HP" type="Sprite2D" parent="UI"]
+z_index = -5
+position = Vector2(119, 47)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_p57ef")
+
+[node name="HpBar" type="ProgressBar" parent="UI"]
+unique_name_in_owner = true
+modulate = Color(0.91, 0, 0.015166435, 1)
+offset_left = 82.0
+offset_top = 38.0
+offset_right = 219.0
+offset_bottom = 57.0
+value = 100.0
+rounded = true
+show_percentage = false
+
+[node name="HpFAnim" type="AnimationPlayer" parent="UI"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_kvuet")
+}
+
+[node name="Clovers" type="Sprite2D" parent="UI"]
+position = Vector2(49, 124)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_gee14")
+
+[node name="Clovers2" type="Sprite2D" parent="UI"]
+visible = false
+position = Vector2(900, 500)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_gee14")
+
+[node name="Label" type="Label" parent="UI"]
+texture_filter = 1
+offset_left = 84.0
+offset_top = 108.0
+offset_right = 124.0
+offset_bottom = 131.0
+scale = Vector2(1.2, 1.2)
+text = " 0 / 7"
+
+[node name="CloverAnim" type="AnimationPlayer" parent="UI"]
+unique_name_in_owner = true
+root_node = NodePath("../HpFAnim")
+libraries = {
+&"": SubResource("AnimationLibrary_0tnpc")
+}
+
+[node name="Mana" type="Sprite2D" parent="UI"]
+position = Vector2(46, 423)
+scale = Vector2(0.7, 0.89639175)
+texture = ExtResource("7_u5sy4")
+
+[node name="Mana_bar" type="ProgressBar" parent="UI"]
+unique_name_in_owner = true
+modulate = Color(0, 0.69411767, 1, 1)
+offset_left = 33.0
+offset_top = 345.0
+offset_right = 63.0
+offset_bottom = 590.0
+rounded = true
+fill_mode = 3
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+offset_left = 17.0
+offset_top = 605.0
+offset_right = 263.0
+offset_bottom = 701.0
+
+[node name="Dash" type="Sprite2D" parent="UI/HBoxContainer"]
+position = Vector2(38, 48)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("8_vtaks")
+
+[node name="Stealth" type="Sprite2D" parent="UI/HBoxContainer"]
+position = Vector2(110.999985, 48)
+scale = Vector2(0.145, 0.145)
+texture = ExtResource("9_kvpfn")
+
+[node name="Teleport" type="Sprite2D" parent="UI/HBoxContainer"]
+position = Vector2(182, 48)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_dinhu")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(515, 446.00003)
+rotation = -6.2831855
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_dinhu")
+animation = &"new_animation"
+
+[node name="Melle" parent="." instance=ExtResource("11_kvpfn")]
+position = Vector2(306.99997, 123)
+
+[node name="Ninja" parent="." instance=ExtResource("12_dinhu")]
+position = Vector2(203, 201)
+
+[node name="Mage" parent="Ninja" instance=ExtResource("13_kvuet")]
+position = Vector2(624.99994, 217.49998)

@@ -9,6 +9,3 @@ func _ready() -> void:
 	
 	var floor_num = GameManager.current_floor
 	%Moon.texture = GameManager.moon_textures[floor_num]
-	await get_tree().create_timer(5.0).timeout
-	%Moon.texture = GameManager.moon_textures[6]
-	

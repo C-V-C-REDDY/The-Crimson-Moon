@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://2mr652vv4cpf"]
+
+[ext_resource type="Texture2D" uid="uid://tbo7imdss0qb" path="res://assets/sprites/Mage.png" id="1_j2dsb"]
+[ext_resource type="Script" uid="uid://fur8xpvt3nm7" path="res://Scripts/mage.gd" id="1_y6d06"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y6d06"]
+radius = 16.0
+height = 134.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2cfv"]
+radius = 39.0
+height = 162.0
+
+[node name="Mage" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_y6d06")
+
+[node name="Mage" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1.0000305, -1.9999847)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_j2dsb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_y6d06")
+
+[node name="HitBox" type="Area2D" parent="." groups=["enemy_hit"]]
+
+[node name="collision" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CapsuleShape2D_t2cfv")
+debug_color = Color(1, 0.002440951, 0.09451675, 0.41960785)

@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://5c223puawwon"]
+
+[ext_resource type="Script" uid="uid://ysfksjoyyvag" path="res://Scripts/ninja.gd" id="1_4i837"]
+[ext_resource type="Texture2D" uid="uid://dgvpk7kn4wt8y" path="res://assets/sprites/Rusher.png" id="1_got4c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4i837"]
+atlas = ExtResource("1_got4c")
+region = Rect2(0, 0, 223, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpdli"]
+atlas = ExtResource("1_got4c")
+region = Rect2(223, 0, 223, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7j1o"]
+atlas = ExtResource("1_got4c")
+region = Rect2(446, 0, 223, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5krh3"]
+atlas = ExtResource("1_got4c")
+region = Rect2(0, 186, 223, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_he7mg"]
+atlas = ExtResource("1_got4c")
+region = Rect2(223, 186, 223, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pgge"]
+atlas = ExtResource("1_got4c")
+region = Rect2(446, 186, 223, 186)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gottu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4i837")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpdli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7j1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5krh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_he7mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pgge")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_got4c"]
+radius = 38.209946
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4i837"]
+radius = 59.0
+height = 122.0
+
+[node name="Ninja" type="CharacterBody2D" groups=["enemies"]]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_4i837")
+
+[node name="NinjaAnim" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_gottu")
+animation = &"Run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(25, -24)
+shape = SubResource("CircleShape2D_got4c")
+
+[node name="HitBox" type="Area2D" parent="." groups=["enemy_hit"]]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(42, -12)
+shape = SubResource("CapsuleShape2D_4i837")
+debug_color = Color(0.7441054, 0, 0.10123024, 0.41960785)
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
