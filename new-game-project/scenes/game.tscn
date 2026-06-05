@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://yicge48108e0"]
+[gd_scene load_steps=21 format=3 uid="uid://yicge48108e0"]
 
 [ext_resource type="Script" uid="uid://bfuxyjqdes301" path="res://Scripts/game.gd" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://bdi0nuw7dhuip" path="res://scenes/luna.tscn" id="1_uwrxv"]
@@ -10,9 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ddk0yx2icavhi" path="res://assets/sprites/Dash.png" id="8_vtaks"]
 [ext_resource type="Texture2D" uid="uid://dly665r6fyadd" path="res://assets/sprites/Stealth.png" id="9_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://c6sbboi45fxtb" path="res://assets/sprites/Teleport.png" id="10_dinhu"]
-[ext_resource type="PackedScene" uid="uid://cxjuvkgwiwgtn" path="res://scenes/Melle.tscn" id="11_kvpfn"]
-[ext_resource type="PackedScene" uid="uid://5c223puawwon" path="res://scenes/ninja.tscn" id="12_dinhu"]
-[ext_resource type="PackedScene" uid="uid://2mr652vv4cpf" path="res://scenes/mage.tscn" id="13_kvuet"]
+[ext_resource type="PackedScene" uid="uid://bbaajxwobo0xm" path="res://scenes/summoner.tscn" id="14_trtic"]
 
 [sub_resource type="Animation" id="Animation_p57ef"]
 resource_name = "Clover+"
@@ -217,11 +215,5 @@ scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_dinhu")
 animation = &"new_animation"
 
-[node name="Melle" parent="." instance=ExtResource("11_kvpfn")]
-position = Vector2(306.99997, 123)
-
-[node name="Ninja" parent="." instance=ExtResource("12_dinhu")]
-position = Vector2(203, 201)
-
-[node name="Mage" parent="Ninja" instance=ExtResource("13_kvuet")]
-position = Vector2(624.99994, 217.49998)
+[node name="Summoner" parent="." instance=ExtResource("14_trtic")]
+position = Vector2(279, 102)

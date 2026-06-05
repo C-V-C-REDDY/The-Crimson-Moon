@@ -6,6 +6,9 @@ var speed = 300
 var max_mana = 10.0
 var current_mana = 0
 var hit = false
+var ice_scene = preload("res://scenes/ice_shard.tscn")
+var shoot_cooldown = 0.5
+var shoot_timer = 0.0
 #STEALTH-----
 
 var is_stealthed = false
@@ -71,6 +74,10 @@ func _physics_process(delta: float) -> void:
 		direction.y -= 1
 	if Input.is_action_pressed("ui_down"):
 		direction.y += 1 
+	shoot_timer -= delta
+	if Input.is_action_just_pressed("shoot") and shoot_timer <= 0.0:
+		shoot()
+		shoot_timer = shoot_cooldown
 	direction = direction.normalized()
 	
 	velocity = direction * speed
@@ -172,3 +179,11 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	print("area name:", area.name)
 	if area.is_in_group("enemy_hit"):
 		play_hit()
+
+
+func shoot() -> void:
+	var ice_shard = ice_scene.instantiate()
+	ice_shard.direction = (get_global_mouse_position() - global_position ).normalized()
+	ice_shard.global_position = global_position
+	get_tree().current_scene.add_child(ice_shard)
+	

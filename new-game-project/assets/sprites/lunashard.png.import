@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlc1uil85v40p"
-path="res://.godot/imported/Boss.png-837f504a47c3b23faa019a4b86372a23.ctex"
+uid="uid://dy7cxmgh1rdqt"
+path="res://.godot/imported/lunashard.png-7076c48ef6a66cbaed392626b44d933b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Boss.png"
-dest_files=["res://.godot/imported/Boss.png-837f504a47c3b23faa019a4b86372a23.ctex"]
+source_file="res://assets/sprites/lunashard.png"
+dest_files=["res://.godot/imported/lunashard.png-7076c48ef6a66cbaed392626b44d933b.ctex"]
 
 [params]
 

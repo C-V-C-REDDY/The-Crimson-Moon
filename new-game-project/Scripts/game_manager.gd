@@ -1,6 +1,5 @@
 extends Node2D
 
-signal damage
 var current_floor = 1.0
 var moon_textures = [
 	preload("res://assets/sprites/Moon1.png"),

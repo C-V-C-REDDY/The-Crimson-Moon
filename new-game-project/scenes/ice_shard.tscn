@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://db065vggj3gg0"]
+
+[ext_resource type="Texture2D" uid="uid://dy7cxmgh1rdqt" path="res://assets/sprites/lunashard.png" id="1_3q1uy"]
+[ext_resource type="Script" uid="uid://c8c3ol5tqx4kx" path="res://Scripts/ice_shard.gd" id="1_dp7x8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3q1uy"]
+size = Vector2(33, 5)
+
+[node name="ice_shard" type="Area2D"]
+rotation = -3.11874
+script = ExtResource("1_dp7x8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -2.7703595
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_3q1uy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -0.5)
+shape = SubResource("RectangleShape2D_3q1uy")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

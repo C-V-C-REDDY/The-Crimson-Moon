@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://2mr652vv4cpf"]
+[gd_scene load_steps=8 format=3 uid="uid://2mr652vv4cpf"]
 
 [ext_resource type="Texture2D" uid="uid://tbo7imdss0qb" path="res://assets/sprites/Mage.png" id="1_j2dsb"]
 [ext_resource type="Script" uid="uid://fur8xpvt3nm7" path="res://Scripts/mage.gd" id="1_y6d06"]
@@ -11,20 +11,102 @@ height = 134.0
 radius = 39.0
 height = 162.0
 
+[sub_resource type="Animation" id="Animation_y6d06"]
+resource_name = "die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.4, 0.4), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_t2cfv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5lxc"]
+_data = {
+&"RESET": SubResource("Animation_t2cfv"),
+&"die": SubResource("Animation_y6d06")
+}
+
 [node name="Mage" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_y6d06")
 
 [node name="Mage" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(1.0000305, -1.9999847)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_j2dsb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_y6d06")
 
-[node name="HitBox" type="Area2D" parent="." groups=["enemy_hit"]]
+[node name="HitBox" type="Area2D" parent="." groups=["enemy_hitbox"]]
 
 [node name="collision" type="CollisionShape2D" parent="HitBox"]
+visible = false
 shape = SubResource("CapsuleShape2D_t2cfv")
 debug_color = Color(1, 0.002440951, 0.09451675, 0.41960785)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 0, 0, 1)
+offset_left = -70.00001
+offset_top = -82.5
+offset_right = 62.999992
+offset_bottom = -70.5
+max_value = 30.0
+value = 30.0
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_r5lxc")
+}
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

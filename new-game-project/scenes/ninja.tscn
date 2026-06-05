@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://5c223puawwon"]
+[gd_scene load_steps=15 format=3 uid="uid://5c223puawwon"]
 
 [ext_resource type="Script" uid="uid://ysfksjoyyvag" path="res://Scripts/ninja.gd" id="1_4i837"]
 [ext_resource type="Texture2D" uid="uid://dgvpk7kn4wt8y" path="res://assets/sprites/Rusher.png" id="1_got4c"]
@@ -60,7 +60,69 @@ radius = 38.209946
 radius = 59.0
 height = 122.0
 
+[sub_resource type="Animation" id="Animation_4i837"]
+resource_name = "die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.4, 0.4), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_kpdli"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.2831855]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kpdli"]
+_data = {
+&"RESET": SubResource("Animation_kpdli"),
+&"die": SubResource("Animation_4i837")
+}
+
 [node name="Ninja" type="CharacterBody2D" groups=["enemies"]]
+rotation = 6.2831855
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_4i837")
 
@@ -73,12 +135,29 @@ animation = &"Run"
 position = Vector2(25, -24)
 shape = SubResource("CircleShape2D_got4c")
 
-[node name="HitBox" type="Area2D" parent="." groups=["enemy_hit"]]
-collision_layer = 2
+[node name="HitBox" type="Area2D" parent="." groups=["enemy_hitbox"]]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(42, -12)
 shape = SubResource("CapsuleShape2D_4i837")
 debug_color = Color(0.7441054, 0, 0.10123024, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_kpdli")
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 0, 0, 1)
+offset_left = -42.5
+offset_top = -57.500004
+offset_right = 79.999985
+offset_bottom = -42.50001
+max_value = 2.0
+value = 2.0
+show_percentage = false
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

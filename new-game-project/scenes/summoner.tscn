@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbaajxwobo0xm"]
+
+[ext_resource type="Texture2D" uid="uid://c8bj4h07kas3x" path="res://assets/sprites/Summoner.png" id="1_08fma"]
+[ext_resource type="Script" uid="uid://mtno2xok5bvf" path="res://Scripts/summoner.gd" id="1_ev7wa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08fma"]
+radius = 47.0
+height = 300.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ev7wa"]
+radius = 104.0
+height = 390.0
+
+[sub_resource type="Animation" id="Animation_ev7wa"]
+resource_name = "die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_ory83"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jfiis"]
+_data = {
+&"RESET": SubResource("Animation_ory83"),
+&"die": SubResource("Animation_ev7wa")
+}
+
+[node name="Summoner" type="CharacterBody2D" groups=["enemies", "enemy_hitbox"]]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ev7wa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("1_08fma")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(5, 22)
+shape = SubResource("CapsuleShape2D_08fma")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy_hitbox"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CapsuleShape2D_ev7wa")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 0, 0, 1)
+offset_left = -91.0
+offset_top = -206.0
+offset_right = 86.0
+offset_bottom = -185.0
+max_value = 40.0
+value = 40.0
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_jfiis")
+}

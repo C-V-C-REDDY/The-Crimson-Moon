@@ -7,6 +7,10 @@
 radius = 22.0
 height = 94.0
 
+[sub_resource type="Animation" id="Animation_jsouy"]
+resource_name = "Hit"
+length = 0.4
+
 [sub_resource type="Animation" id="Animation_5gjum"]
 length = 0.001
 tracks/0/type = "value"
@@ -66,10 +70,6 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(0, -15), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_jsouy"]
-resource_name = "Hit"
-length = 0.4
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jsouy"]
 _data = {
 &"Hit": SubResource("Animation_jsouy"),
@@ -100,7 +100,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_jsouy")
 }
 
-[node name="HurtBox" type="Area2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="." groups=["luna_hurtbox"]]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]

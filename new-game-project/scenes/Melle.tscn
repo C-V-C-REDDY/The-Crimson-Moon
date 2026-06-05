@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxjuvkgwiwgtn"]
+[gd_scene load_steps=15 format=3 uid="uid://cxjuvkgwiwgtn"]
 
 [ext_resource type="Script" uid="uid://ceudvjsniat7p" path="res://Scripts/melle.gd" id="1_cyq12"]
 [ext_resource type="Texture2D" uid="uid://1mfk3g1x0co0" path="res://assets/sprites/Melle.png" id="1_fpil3"]
@@ -61,11 +61,97 @@ height = 122.0
 radius = 44.0
 height = 158.0
 
+[sub_resource type="Animation" id="Animation_cyq12"]
+resource_name = "die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.4, 0.4), Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_cm763"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cm763"]
+_data = {
+&"RESET": SubResource("Animation_cm763"),
+&"die": SubResource("Animation_cyq12")
+}
+
 [node name="Melle" type="CharacterBody2D" groups=["enemies"]]
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_cyq12")
 
 [node name="MelleAnim" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ife42")
 animation = &"Attack"
@@ -75,12 +161,29 @@ position = Vector2(18, -23)
 shape = SubResource("CapsuleShape2D_fpil3")
 debug_color = Color(0.9198584, 0.2827947, 0, 0.41960785)
 
-[node name="HitBox" type="Area2D" parent="." groups=["enemy_hit"]]
+[node name="HitBox" type="Area2D" parent="." groups=["enemy_hitbox"]]
 unique_name_in_owner = true
-collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(13, -12)
 shape = SubResource("CapsuleShape2D_cyq12")
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 0, 0, 1)
+offset_left = -17.500004
+offset_top = -102.5
+offset_right = 54.99998
+offset_bottom = -90.499985
+max_value = 30.0
+value = 30.0
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_cm763")
+}
+
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]
