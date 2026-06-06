@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var speed = 40.0
 var damage = 5.0
-var summon_cooldown = 5.0
+var summon_cooldown = 8.0
 var summon_timer = 5.0
 var summon_limit = 3
 var summoned_count = 0
@@ -12,8 +12,8 @@ var enemy_scenes = [
 	preload("res://scenes/Melle.tscn"),
 	preload("res://scenes/ninja.tscn")
 ]
-var health = 40.0
-
+var health = 20.0
+var is_freeze = false
 
 func _ready() -> void:
 	modulate.a = 0.5
@@ -25,6 +25,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var luna = get_tree().get_first_node_in_group("luna")
 	if not luna:
+		return
+	if is_freeze:
 		return
 	
 	var dist = global_position.distance_to(luna.global_position)
@@ -53,9 +55,11 @@ func summon_enemy() -> void:
 	if enemy_scenes.is_empty():
 		return
 	var random_scene = enemy_scenes[randi() % enemy_scenes.size()]
+	GameManager.spawn_summoned_enemy(random_scene)
 	var enemy = random_scene.instantiate()
 	enemy.global_position = global_position + Vector2(randf_range(-80, 80), randf_range(-80 , 80))
 	enemy.modulate.a = 0.5
+	enemy.is_summoned = true
 	get_tree().current_scene.add_child(enemy)
 	summoned_count += 1
 	enemy.tree_exited.connect(func(): summoned_count -= 1)
@@ -70,4 +74,11 @@ func take_damage(amount: float) -> void:
 		%AnimationPlayer.play("die")
 		await get_tree().create_timer(0.3).timeout
 		queue_free()
-		GameManager.enemy_kill
+		GameManager.enemy_killed()
+
+func freeze() -> void:
+	is_freeze = true
+	modulate = Color(0.0, 0.0, 2.0, 1.0)
+	await get_tree().create_timer(3.0).timeout
+	modulate = Color(1.0, 1.0, 1.0)
+	is_freeze = false

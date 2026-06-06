@@ -7,9 +7,9 @@ var shoot_cooldown = 2.0
 var shoot_timer = 0.0
 var shoot_range = 300.0
 var health = 30.0
-
+var is_summoned = false
 var orb_scene = preload("res://scenes/orb.tscn")
-
+var is_freeze = false
 func _ready() -> void:
 	# Breathe
 	var tween = create_tween().set_loops()
@@ -17,6 +17,8 @@ func _ready() -> void:
 	tween.tween_property(self, "scale", Vector2(0.3, 0.3), 0.9)
 
 func _physics_process(_delta: float) -> void:
+	if is_freeze:
+		return
 	var luna = get_tree().get_first_node_in_group("luna")
 	if not luna:
 		return
@@ -47,6 +49,7 @@ func shoot(direction: Vector2) -> void:
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("luna"):
 		GameManager.current_health -= damage
+		get_tree().get_first_node_in_group("luna").play_hit()
 
 func take_damage(amount: float) -> void:
 	health -= amount
@@ -57,5 +60,13 @@ func take_damage(amount: float) -> void:
 	if health <= 0:
 		%AnimationPlayer.play("die")
 		await get_tree().create_timer(0.3).timeout
+		if not is_summoned:
+			GameManager.enemy_killed()
 		queue_free()
-		GameManager.enemy_kill
+
+func freeze() -> void:
+	is_freeze = true
+	modulate = Color(0.0, 0.0, 2.0, 1.0)
+	await get_tree().create_timer(3.0).timeout
+	modulate = Color(1.0, 1.0, 1.0)
+	is_freeze = false

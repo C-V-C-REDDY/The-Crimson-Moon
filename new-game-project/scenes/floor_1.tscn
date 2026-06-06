@@ -246,7 +246,7 @@ sprite_frames = SubResource("SpriteFrames_6j26s")
 animation = &"light"
 frame_progress = 0.29467937
 
-[node name="Moon" type="Sprite2D" parent="."]
+[node name="Moon" type="Sprite2D" parent="." groups=["moon"]]
 unique_name_in_owner = true
 position = Vector2(640, 78.99999)
 scale = Vector2(0.2, 0.2)

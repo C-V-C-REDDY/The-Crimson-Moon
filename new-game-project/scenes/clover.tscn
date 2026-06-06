@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgaadjtc2iuah"]
+
+[ext_resource type="Texture2D" uid="uid://blhc75qyaslda" path="res://assets/sprites/clovers.png" id="1_0nhso"]
+[ext_resource type="Script" uid="uid://betjj2sq5hqfi" path="res://Scripts/clover.gd" id="1_u80bc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u80bc"]
+radius = 149.25146
+
+[node name="Clover" type="Area2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_u80bc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0nhso")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u80bc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

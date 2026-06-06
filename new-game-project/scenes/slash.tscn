@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://drqrsdiyssppv"]
+
+[ext_resource type="Script" uid="uid://dkgjwis5l6mcv" path="res://Scripts/slash.gd" id="1_3c2nd"]
+[ext_resource type="Texture2D" uid="uid://dydvvitpgd00d" path="res://assets/sprites/BossSlash.png" id="1_rkylg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkylg"]
+radius = 18.841532
+height = 58.867397
+
+[node name="Slash" type="Area2D"]
+script = ExtResource("1_3c2nd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.1349372
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_rkylg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.9999986, -9.536743e-07)
+rotation = -0.93093574
+shape = SubResource("CapsuleShape2D_rkylg")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

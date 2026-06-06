@@ -1,10 +1,77 @@
-[gd_scene load_steps=4 format=3 uid="uid://db065vggj3gg0"]
+[gd_scene load_steps=8 format=3 uid="uid://db065vggj3gg0"]
 
 [ext_resource type="Texture2D" uid="uid://dy7cxmgh1rdqt" path="res://assets/sprites/lunashard.png" id="1_3q1uy"]
 [ext_resource type="Script" uid="uid://c8c3ol5tqx4kx" path="res://Scripts/ice_shard.gd" id="1_dp7x8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3q1uy"]
 size = Vector2(33, 5)
+
+[sub_resource type="Animation" id="Animation_dp7x8"]
+resource_name = "UX"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-3.11874, 3.106686]
+}
+
+[sub_resource type="Animation" id="Animation_b2crw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-3.11874]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_autit"]
+resource_name = "ux2"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_autit"]
+_data = {
+&"RESET": SubResource("Animation_b2crw"),
+&"UX": SubResource("Animation_dp7x8"),
+&"ux2": SubResource("Animation_autit")
+}
 
 [node name="ice_shard" type="Area2D"]
 rotation = -3.11874
@@ -18,5 +85,11 @@ texture = ExtResource("1_3q1uy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -0.5)
 shape = SubResource("RectangleShape2D_3q1uy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_autit")
+}
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://yicge48108e0"]
+[gd_scene load_steps=23 format=3 uid="uid://yicge48108e0"]
 
 [ext_resource type="Script" uid="uid://bfuxyjqdes301" path="res://Scripts/game.gd" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://bdi0nuw7dhuip" path="res://scenes/luna.tscn" id="1_uwrxv"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ddk0yx2icavhi" path="res://assets/sprites/Dash.png" id="8_vtaks"]
 [ext_resource type="Texture2D" uid="uid://dly665r6fyadd" path="res://assets/sprites/Stealth.png" id="9_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://c6sbboi45fxtb" path="res://assets/sprites/Teleport.png" id="10_dinhu"]
-[ext_resource type="PackedScene" uid="uid://bbaajxwobo0xm" path="res://scenes/summoner.tscn" id="14_trtic"]
+[ext_resource type="Texture2D" uid="uid://h504oavkfgqc" path="res://assets/sprites/Crosschair.png" id="11_kvpfn"]
 
 [sub_resource type="Animation" id="Animation_p57ef"]
 resource_name = "Clover+"
@@ -32,7 +32,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_dinhu"]
 resource_name = "clover"
-length = 15.0
+length = 2.0
 loop_mode = 1
 
 [sub_resource type="Animation" id="Animation_vtaks"]
@@ -97,15 +97,92 @@ _data = {
 &"clover": SubResource("Animation_u5sy4")
 }
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dinhu"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 6.0
-}]
+[sub_resource type="Animation" id="Animation_kvuet"]
+resource_name = "Clover_claim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, 500), Vector2(49, 124)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5707963267948966]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_trtic"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ir15t"]
+_data = {
+&"Clover_claim": SubResource("Animation_kvuet"),
+&"RESET": SubResource("Animation_trtic")
+}
 
 [node name="Game" type="Node"]
+process_mode = 3
 script = ExtResource("1_u5sy4")
 
 [node name="Luna" parent="." instance=ExtResource("1_uwrxv")]
@@ -115,6 +192,7 @@ position = Vector2(640, 666)
 [node name="Floor1" parent="." instance=ExtResource("2_yqjtg")]
 
 [node name="UI" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="FloorCount" type="Sprite2D" parent="UI"]
 position = Vector2(1172, 57)
@@ -149,13 +227,9 @@ position = Vector2(49, 124)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("6_gee14")
 
-[node name="Clovers2" type="Sprite2D" parent="UI"]
-visible = false
-position = Vector2(900, 500)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("6_gee14")
-
 [node name="Label" type="Label" parent="UI"]
+unique_name_in_owner = true
+process_mode = 3
 texture_filter = 1
 offset_left = 84.0
 offset_top = 108.0
@@ -183,6 +257,7 @@ offset_left = 33.0
 offset_top = 345.0
 offset_right = 63.0
 offset_bottom = 590.0
+max_value = 10.0
 rounded = true
 fill_mode = 3
 show_percentage = false
@@ -194,26 +269,39 @@ offset_right = 263.0
 offset_bottom = 701.0
 
 [node name="Dash" type="Sprite2D" parent="UI/HBoxContainer"]
+unique_name_in_owner = true
 position = Vector2(38, 48)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("8_vtaks")
 
 [node name="Stealth" type="Sprite2D" parent="UI/HBoxContainer"]
+unique_name_in_owner = true
 position = Vector2(110.999985, 48)
 scale = Vector2(0.145, 0.145)
 texture = ExtResource("9_kvpfn")
 
 [node name="Teleport" type="Sprite2D" parent="UI/HBoxContainer"]
+unique_name_in_owner = true
 position = Vector2(182, 48)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("10_dinhu")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(515, 446.00003)
-rotation = -6.2831855
-scale = Vector2(0.3, 0.3)
-sprite_frames = SubResource("SpriteFrames_dinhu")
-animation = &"new_animation"
+[node name="Clover_Claim" type="AnimationPlayer" parent="UI"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_ir15t")
+}
 
-[node name="Summoner" parent="." instance=ExtResource("14_trtic")]
-position = Vector2(279, 102)
+[node name="TeleportCursor" type="Sprite2D" parent="UI"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+position = Vector2(560, 324.00003)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("11_kvpfn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(640, 500)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_gee14")

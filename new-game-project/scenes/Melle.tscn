@@ -61,6 +61,45 @@ height = 122.0
 radius = 44.0
 height = 158.0
 
+[sub_resource type="Animation" id="Animation_cm763"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_cyq12"]
 resource_name = "die"
 length = 0.3
@@ -101,45 +140,6 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_cm763"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.4, 0.4)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cm763"]
 _data = {
 &"RESET": SubResource("Animation_cm763"),
@@ -157,6 +157,7 @@ sprite_frames = SubResource("SpriteFrames_ife42")
 animation = &"Attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(18, -23)
 shape = SubResource("CapsuleShape2D_fpil3")
 debug_color = Color(0.9198584, 0.2827947, 0, 0.41960785)
@@ -165,6 +166,7 @@ debug_color = Color(0.9198584, 0.2827947, 0, 0.41960785)
 unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+visible = false
 position = Vector2(13, -12)
 shape = SubResource("CapsuleShape2D_cyq12")
 
@@ -184,6 +186,27 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_cm763")
 }
+
+[node name="ST1" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 54.999996
+offset_top = -139.99998
+offset_right = 95.0
+offset_bottom = -76.999985
+rotation = 0.53865033
+theme_override_font_sizes/font_size = 45
+text = "?"
+
+[node name="ST2" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -12.499997
+offset_top = -102.5
+offset_right = 27.500004
+offset_bottom = -63.5
+rotation = -0.37221667
+theme_override_font_sizes/font_size = 24
+text = "?"
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]

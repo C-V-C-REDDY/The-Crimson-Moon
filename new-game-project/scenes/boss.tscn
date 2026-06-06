@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://vm8xtbvslbie"]
+
+[ext_resource type="Texture2D" uid="uid://dlc1uil85v40p" path="res://assets/sprites/Boss.png" id="1_dlmty"]
+[ext_resource type="Script" uid="uid://cs1ddyv10bcmr" path="res://Scripts/boss.gd" id="1_neq0i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neq0i"]
+atlas = ExtResource("1_dlmty")
+region = Rect2(0, 0, 225, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jncid"]
+atlas = ExtResource("1_dlmty")
+region = Rect2(225, 0, 225, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnbj4"]
+atlas = ExtResource("1_dlmty")
+region = Rect2(450, 0, 225, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3bxh"]
+atlas = ExtResource("1_dlmty")
+region = Rect2(0, 184, 225, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqpjq"]
+atlas = ExtResource("1_dlmty")
+region = Rect2(225, 184, 225, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cdgk"]
+atlas = ExtResource("1_dlmty")
+region = Rect2(450, 184, 225, 184)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qsl3t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_neq0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jncid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnbj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3bxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqpjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cdgk")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2avx2"]
+radius = 36.0
+height = 118.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_neq0i"]
+radius = 72.0
+height = 186.0
+
+[node name="Boss" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_neq0i")
+
+[node name="Boss_sprite" type="AnimatedSprite2D" parent="." groups=["enemies"]]
+unique_name_in_owner = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_qsl3t")
+animation = &"slash"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(9, 7)
+shape = SubResource("CapsuleShape2D_2avx2")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 0, 0, 1)
+offset_left = -79.0
+offset_top = -73.0
+offset_right = 96.0
+offset_bottom = -61.0
+value = 100.0
+show_percentage = false
+
+[node name="wait_timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 10.0
+autostart = true
+
+[node name="Hitbox" type="Area2D" parent="." groups=["enemy_hitbox"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(13, -10)
+shape = SubResource("CapsuleShape2D_neq0i")

@@ -2,9 +2,12 @@ extends CharacterBody2D
 
 var speed = 200
 var damage = 5
-var health = 20.0
-
+var health = 10.0
+var is_summoned = false
+var is_freeze = false
 func _physics_process(_delta: float) -> void:
+	if is_freeze:
+		return
 	var luna = get_tree().get_first_node_in_group("luna")
 	var direction = (luna.global_position - global_position).normalized()
 	velocity = direction * speed
@@ -33,5 +36,13 @@ func take_damage(amount: float) -> void:
 	if health <= 0:
 		%AnimationPlayer.play("die")
 		await get_tree().create_timer(0.3).timeout
+		if not is_summoned:
+			GameManager.enemy_killed()
 		queue_free()
-		GameManager.enemy_kill
+
+func freeze() -> void:
+	is_freeze = true
+	modulate = Color(0.0, 0.0, 2.0, 1.0)
+	await get_tree().create_timer(3.0).timeout
+	modulate = Color(1.0, 1.0, 1.0)
+	is_freeze = false

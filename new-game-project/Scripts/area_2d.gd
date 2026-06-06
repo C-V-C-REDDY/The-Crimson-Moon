@@ -1,17 +1,22 @@
 extends Area2D
 
-var speed =1000.0
+var speed = 300.0
 var direction = Vector2.ZERO
+var is_medusa = true
+
+func _ready() -> void:
+	await get_tree().create_timer(4.0).timeout
+	queue_free()
 
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
 
-func _ready() -> void:
-	%AnimationPlayer.play("UX")
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_hitbox"):
 		var enemy = area.get_parent()
-		if enemy.has_method("take_damage"):
-			enemy.take_damage(10.0)
+		if enemy.name == "Boss":
+			return
+		if enemy.has_method("freeze"):
+			enemy.freeze()
 		queue_free()

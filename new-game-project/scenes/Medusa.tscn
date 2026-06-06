@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtm7id5k3p2qs"]
+
+[ext_resource type="Script" uid="uid://748q7hhwlu2" path="res://Scripts/area_2d.gd" id="1_x0npd"]
+[ext_resource type="Texture2D" uid="uid://p5d45833b4ap" path="res://assets/sprites/Blast.png" id="2_sqg0n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhxoo"]
+radius = 84.0238
+
+[node name="Medusa" type="Area2D"]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_x0npd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_sqg0n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nhxoo")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

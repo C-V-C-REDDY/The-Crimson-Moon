@@ -7,5 +7,5 @@ func _ready() -> void:
 	%AnimationPlayer.play("new_animation")
 	%DoorAnimation.play("Door")
 	
-	var floor_num = GameManager.current_floor
-	%Moon.texture = GameManager.moon_textures[floor_num]
+	#var floor_num = GameManager.current_floor
+	#%Moon.texture = GameManager.moon_textures[floor_num - 1]
