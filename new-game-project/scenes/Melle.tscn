@@ -189,23 +189,13 @@ libraries = {
 
 [node name="ST1" type="Label" parent="."]
 unique_name_in_owner = true
+visible = false
 offset_left = 54.999996
 offset_top = -139.99998
 offset_right = 95.0
 offset_bottom = -76.999985
 rotation = 0.53865033
 theme_override_font_sizes/font_size = 45
-text = "?"
-
-[node name="ST2" type="Label" parent="."]
-unique_name_in_owner = true
-visible = false
-offset_left = -12.499997
-offset_top = -102.5
-offset_right = 27.500004
-offset_bottom = -63.5
-rotation = -0.37221667
-theme_override_font_sizes/font_size = 24
 text = "?"
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

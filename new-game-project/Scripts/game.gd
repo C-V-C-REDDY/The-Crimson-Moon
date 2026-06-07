@@ -6,6 +6,15 @@ func _ready() -> void:
 	GameManager.start_floor(1)
 
 func _process(_delta: float) -> void:
+	if not is_instance_valid(GameManager):
+		return
+	if GameManager.boss_killed:
+		win()
+		return
+	if GameManager.current_health <= 0:
+		loose()
+		return
+		
 	if get_tree().paused and GameManager.teleport_active:
 		var cursor = %TeleportCursor
 		cursor.visible = true
@@ -24,7 +33,50 @@ func _process(_delta: float) -> void:
 		%Label.text = str(GameManager.clover_count) + " / 7"
 		GameManager.clover_claimed = false
 	
-	
 	%Dash.modulate.a = 1.0 if GameManager.mana >= 3 else 0.4
 	%Stealth.modulate.a = 1.0 if GameManager.mana >= 3 else 0.4
 	%Teleport.modulate.a = 1.0 if GameManager.mana >= 3 else 0.4
+
+func win():
+	get_tree().paused = true
+	%Win.visible = true
+	var minutes = int(GameManager.time / 60)
+	var seconds = int(GameManager.time) % 60
+	%timer.text = "%02d:%02d" % [minutes, seconds]
+	%Clovercount.text = str(int(GameManager.clover_count))
+	%Kills.text = str(int(GameManager.kill_count))
+	var best = GameManager.load_high_score()
+	var best_min = int(best / 60)
+	var best_sec = int(best) % 60
+	%High_score.text = "%02d:%02d" % [best_min, best_sec]
+	%AnimationPlayer.play("win")
+	GameManager.reset()
+
+
+func loose():
+	get_tree().paused = true
+	%Die.visible = true
+	var minutes = int(GameManager.time / 60)
+	var seconds = int(GameManager.time )% 60
+	%Timer.text = "%02d:%02d" % [minutes, seconds]
+	%Clover_count.text = str(int(GameManager.clover_count))
+	%Kill_count.text = str(int(GameManager.kill_count))
+	%Looseanim.play("loose")
+	GameManager.reset()
+
+
+func _on_pause_pressed() -> void:
+	get_tree().paused = true
+	%pause_menu.visible = true
+
+
+func _on_resumebt_pressed() -> void:
+	get_tree().paused = false
+	%pause_menu.visible = false
+
+
+func _on_restartbt_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+	GameManager.reset()
+	%pause_menu.visible = false

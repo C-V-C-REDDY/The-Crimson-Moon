@@ -32,6 +32,7 @@ enemies=""
 luna_hurtbox=""
 enemy_hitbox=""
 moon=""
+floor=""
 
 [input]
 

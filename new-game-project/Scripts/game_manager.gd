@@ -8,6 +8,9 @@ var moon_textures = [
 	preload("res://assets/sprites/Moon6.png"),
 	preload("res://assets/sprites/Moon7.png")
 ]
+var time = 0.0
+
+
 
 var current_health = 100.0
 var max_health = 100.0
@@ -32,6 +35,9 @@ var clover_scene = preload("res://scenes/clover.tscn")
 var boss_scene = preload("res://scenes/boss.tscn")
 var clover_pos = Vector2(640,500)
 var floor_trasitioning = false
+var boss_killed = false
+var kill_count = 0
+
 # Floor Data
 
 var floor_data = {
@@ -69,6 +75,14 @@ var spawn_bounds = {
 	"x_min": 200, "x_max": 1100,
 	"y_min": 100, "y_max": 600
 }
+
+
+func _process(delta: float) -> void:
+	if boss_killed:
+		return
+	time += delta
+
+
 
 func start_floor(floor_num: int) -> void:
 	current_floor = floor_num
@@ -207,26 +221,61 @@ func show_teleport_cursor():
 	teleport_active = true
 
 func boss_defeated() -> void:
+	var best = load_high_score()
+	if best == 0.0 or time < best:
+		save_high_score(time)
 	floor_trasitioning = true
-	current_health = max_health
+	boss_killed = true
+	get_tree().paused = true
 
 
 func setup_boss_floor() -> void:
-	#var luna = get_tree().get_first_node_in_group("luna")
-	#luna.medusa_unlocked = true
+	var luna = get_tree().get_first_node_in_group("luna")
+	luna.medusa_unlocked = true
 	current_health = max_health
 	var boss = boss_scene.instantiate()
 	boss.global_position = Vector2(640, 200)
 	get_tree().current_scene.add_child(boss)
-	#spawn_floor7_summoners()
+	spawn_floor7_summoners()
 
 
-#func spawn_floor7_summoners() -> void:
-	#var s1 = summoner_scene.instantiate()
-	#var s2 = summoner_scene.instantiate()
-	#s1.global_position = get_random_spawn_pos()
-	#s2.global_position = get_random_spawn_pos()
-	#get_tree().current_scene.add_child(s1)
-	#get_tree().current_scene.add_child(s2)
-	#await get_tree().create_timer(20.0).timeout
-	#spawn_floor7_summoners()
+func spawn_floor7_summoners() -> void:
+	if boss_killed:
+		queue_free()
+		return
+	var s1 = summoner_scene.instantiate()
+	var s2 = summoner_scene.instantiate()
+	s1.global_position = get_random_spawn_pos()
+	s2.global_position = get_random_spawn_pos()
+	get_tree().current_scene.add_child(s1)
+	get_tree().current_scene.add_child(s2)
+	await get_tree().create_timer(30.0).timeout
+	spawn_floor7_summoners()
+
+
+func save_high_score(time: float) -> void:
+	var file = FileAccess.open("user://high_score.txt", FileAccess.WRITE)
+	file.store_float(time)
+	file.close()
+
+
+func load_high_score() -> float:
+	if not FileAccess.file_exists("user://high_score.txt"):
+		return 0.0
+	var file = FileAccess.open("user://high_score.txt", FileAccess.READ)
+	var score = file.get_float()
+	file.close()
+	return score
+
+
+func reset():
+	current_floor = 1
+	current_wave = 0
+	enemies_alive = 0
+	enemies_killed = 0
+	kill_count = 0
+	current_health = max_health
+	mana = 0.0
+	time = 0.0
+	clover_count = 0
+	floor_trasitioning = false

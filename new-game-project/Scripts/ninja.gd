@@ -10,6 +10,13 @@ func _physics_process(_delta: float) -> void:
 		return
 	var luna = get_tree().get_first_node_in_group("luna")
 	var direction = (luna.global_position - global_position).normalized()
+	if luna.is_stealthed:
+		%Label.visible = true
+		return
+	else:
+		%Label.visible = false
+	if GameManager.teleport_active:
+		return
 	velocity = direction * speed
 	move_and_slide()
 	%NinjaAnim.play("Run")
@@ -34,6 +41,7 @@ func take_damage(amount: float) -> void:
 	tween.tween_property(self, "modulate", Color(1.16, 0.0, 0.0, 1.0), 0.1)
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.1)
 	if health <= 0:
+		GameManager.kill_count += 1
 		%AnimationPlayer.play("die")
 		await get_tree().create_timer(0.3).timeout
 		if not is_summoned:

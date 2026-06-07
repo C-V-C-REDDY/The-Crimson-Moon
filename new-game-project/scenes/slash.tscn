@@ -1,19 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://drqrsdiyssppv"]
 
 [ext_resource type="Script" uid="uid://dkgjwis5l6mcv" path="res://Scripts/slash.gd" id="1_3c2nd"]
-[ext_resource type="Texture2D" uid="uid://dydvvitpgd00d" path="res://assets/sprites/BossSlash.png" id="1_rkylg"]
+[ext_resource type="Texture2D" uid="uid://d8csgx1hffdg" path="res://assets/sprites/Slash.png" id="2_3c2nd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkylg"]
 radius = 18.841532
-height = 58.867397
+height = 119.62544
 
 [node name="Slash" type="Area2D"]
 script = ExtResource("1_3c2nd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.1349372
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_rkylg")
+position = Vector2(6.9432697, 5.566866)
+rotation = -0.8300791
+scale = Vector2(0.15, 0.42963043)
+texture = ExtResource("2_3c2nd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.9999986, -9.536743e-07)

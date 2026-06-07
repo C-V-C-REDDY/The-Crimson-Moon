@@ -60,6 +60,33 @@ radius = 38.209946
 radius = 59.0
 height = 122.0
 
+[sub_resource type="Animation" id="Animation_kpdli"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.2831855]
+}
+
 [sub_resource type="Animation" id="Animation_4i837"]
 resource_name = "die"
 length = 0.3
@@ -86,33 +113,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 6.2831855]
-}
-
-[sub_resource type="Animation" id="Animation_kpdli"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.4, 0.4)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [6.2831855]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kpdli"]
@@ -159,5 +159,15 @@ offset_bottom = -42.50001
 max_value = 2.0
 value = 2.0
 show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 82.499985
+offset_top = -47.500034
+offset_right = 122.499985
+offset_bottom = -3.5000343
+rotation = 0.43630552
+theme_override_font_sizes/font_size = 36
+text = "?"
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

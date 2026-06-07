@@ -12,7 +12,7 @@ var enemy_scenes = [
 	preload("res://scenes/Melle.tscn"),
 	preload("res://scenes/ninja.tscn")
 ]
-var health = 20.0
+var health = 50.0
 var is_freeze = false
 
 func _ready() -> void:
@@ -31,7 +31,13 @@ func _physics_process(delta: float) -> void:
 	
 	var dist = global_position.distance_to(luna.global_position)
 	var direction = (luna.global_position - global_position).normalized()
-	
+	if luna.is_stealthed:
+		%Label.visible = true
+		return
+	else:
+		%Label.visible = false
+	if GameManager.teleport_active:
+		return
 	if dist < 250.0:
 		velocity = -direction * speed
 	else:
@@ -71,6 +77,7 @@ func take_damage(amount: float) -> void:
 	tween.tween_property(self, "modulate", Color(1.16, 0.0, 0.0, 1.0), 0.1)
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.1)
 	if health <= 0:
+		GameManager.kill_count += 1
 		%AnimationPlayer.play("die")
 		await get_tree().create_timer(0.3).timeout
 		queue_free()

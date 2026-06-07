@@ -3,8 +3,8 @@ extends CharacterBody2D
 #STATS----
 
 var speed = 300
-var max_mana = 500.0
-var current_mana = 500.0
+var max_mana = 10.0
+var current_mana = 10.0
 var hit = false
 var ice_scene = preload("res://scenes/ice_shard.tscn")
 var shoot_cooldown = 0.5
@@ -43,13 +43,17 @@ const STEALTH_COST = 3
 const TELEPORT_COST = 5
 
 func _physics_process(delta: float) -> void:
+	if not is_instance_valid(GameManager):
+		return
+	if get_tree().paused:
+		return
 	if medusa_unlocked:
 		medusa_timer -= delta
 		if medusa_timer <= 0.0:
 			launch_medusa()
 			medusa_timer = medusa_cooldown
 	
-	#current_mana = GameManager.mana
+	current_mana = GameManager.mana
 	if not is_dashing:
 		if Input.is_action_just_pressed("dash") and current_mana >= DASH_COST:
 			use_dash()

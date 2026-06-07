@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://yicge48108e0"]
+[gd_scene load_steps=36 format=3 uid="uid://yicge48108e0"]
 
 [ext_resource type="Script" uid="uid://bfuxyjqdes301" path="res://Scripts/game.gd" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://bdi0nuw7dhuip" path="res://scenes/luna.tscn" id="1_uwrxv"]
@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://dly665r6fyadd" path="res://assets/sprites/Stealth.png" id="9_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://c6sbboi45fxtb" path="res://assets/sprites/Teleport.png" id="10_dinhu"]
 [ext_resource type="Texture2D" uid="uid://h504oavkfgqc" path="res://assets/sprites/Crosschair.png" id="11_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://7hn00q4n32jl" path="res://assets/Win.png" id="12_dinhu"]
+[ext_resource type="Texture2D" uid="uid://busjj7emh8m5h" path="res://assets/sprites/Gemini_Generated_Image_uqkglguqkglguqkg-removebg-preview.png" id="13_kvuet"]
+[ext_resource type="Texture2D" uid="uid://quycme5mkqff" path="res://assets/sprites/Gemini_Generated_Image_sub6wysub6wysub6-removebg-preview.png" id="14_trtic"]
+[ext_resource type="Texture2D" uid="uid://cdcim10j84623" path="res://assets/sprites/Gemini_Generated_Image_oz3xxxoz3xxxoz3x-removebg-preview.png" id="15_ir15t"]
 
 [sub_resource type="Animation" id="Animation_p57ef"]
 resource_name = "Clover+"
@@ -181,6 +185,118 @@ _data = {
 &"RESET": SubResource("Animation_trtic")
 }
 
+[sub_resource type="Animation" id="Animation_ca42v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(143, 72)]
+}
+
+[sub_resource type="Animation" id="Animation_ir15t"]
+resource_name = "win"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(143, 72), Vector2(143, 62), Vector2(143, 72)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rysoc"]
+_data = {
+&"RESET": SubResource("Animation_ca42v"),
+&"win": SubResource("Animation_ir15t")
+}
+
+[sub_resource type="Animation" id="Animation_ssvqc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(91, 51)]
+}
+
+[sub_resource type="Animation" id="Animation_rysoc"]
+resource_name = "loose"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(91, 51), Vector2(91, 41), Vector2(91, 51)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_264po"]
+_data = {
+&"RESET": SubResource("Animation_ssvqc"),
+&"loose": SubResource("Animation_rysoc")
+}
+
+[sub_resource type="Animation" id="Animation_264po"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(390, 110), Vector2(390, 100), Vector2(390, 110)]
+}
+
+[sub_resource type="Animation" id="Animation_1kice"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(390, 110)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5newe"]
+_data = {
+&"RESET": SubResource("Animation_1kice"),
+&"idle": SubResource("Animation_264po")
+}
+
 [node name="Game" type="Node"]
 process_mode = 3
 script = ExtResource("1_u5sy4")
@@ -195,7 +311,7 @@ position = Vector2(640, 666)
 process_mode = 3
 
 [node name="FloorCount" type="Sprite2D" parent="UI"]
-position = Vector2(1172, 57)
+position = Vector2(1169, 91)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_lnu2h")
 
@@ -300,8 +416,212 @@ position = Vector2(560, 324.00003)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("11_kvpfn")
 
+[node name="Win" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8117647)
+
+[node name="TextureRect" type="TextureRect" parent="UI/Win"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -497.0
+offset_top = -288.0
+offset_right = 172.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("12_dinhu")
+
+[node name="timer" type="Label" parent="UI/Win/TextureRect"]
+unique_name_in_owner = true
+modulate = Color(0.2953924, 0.9999997, 0.9985518, 1)
+layout_mode = 0
+offset_left = 357.3333
+offset_top = 175.28171
+offset_right = 458.3333
+offset_bottom = 205.28171
+theme_override_font_sizes/font_size = 17
+text = "1:36"
+
+[node name="Kills" type="Label" parent="UI/Win/TextureRect"]
+unique_name_in_owner = true
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 432.0
+offset_top = 124.45512
+offset_right = 472.0
+offset_bottom = 155.45511
+theme_override_font_sizes/font_size = 22
+text = "57"
+
+[node name="Clovercount" type="Label" parent="UI/Win/TextureRect"]
+unique_name_in_owner = true
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 401.33334
+offset_top = 92.22045
+offset_right = 441.33334
+offset_bottom = 115.220474
+text = "14"
+
+[node name="High_score" type="Label" parent="UI/Win/TextureRect"]
+unique_name_in_owner = true
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 406.6667
+offset_top = 217.97295
+offset_right = 446.6667
+offset_bottom = 245.97295
+theme_override_font_sizes/font_size = 20
+text = "1:36"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Win"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_rysoc")
+}
+
+[node name="Die" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.38, 0, 0, 0.8039216)
+
+[node name="TextureRect" type="TextureRect" parent="UI/Die"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -549.0
+offset_top = -309.0
+offset_right = 513.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_kvuet")
+
+[node name="Clover_count" type="Label" parent="UI/Die/TextureRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 634.0
+offset_top = 153.0
+offset_right = 674.0
+offset_bottom = 188.0
+theme_override_font_sizes/font_size = 25
+text = "10"
+
+[node name="Kill_count" type="Label" parent="UI/Die/TextureRect"]
+unique_name_in_owner = true
+modulate = Color(0.9276859, 0.2135694, 0, 1)
+layout_mode = 0
+offset_left = 679.0
+offset_top = 207.0
+offset_right = 719.0
+offset_bottom = 252.0
+theme_override_font_sizes/font_size = 32
+text = "15"
+
+[node name="Timer" type="Label" parent="UI/Die/TextureRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 567.0
+offset_top = 287.0
+offset_right = 621.0
+offset_bottom = 324.0
+theme_override_font_sizes/font_size = 27
+text = "1:55"
+
+[node name="Looseanim" type="AnimationPlayer" parent="UI/Die"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_264po")
+}
+
+[node name="Pause" type="TextureButton" parent="UI"]
+offset_left = 1182.0
+offset_top = 2.0
+offset_right = 1848.0
+offset_bottom = 502.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("14_trtic")
+
+[node name="pause_menu" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6901961)
+
+[node name="TextureRect" type="TextureRect" parent="UI/pause_menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.00085
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("15_ir15t")
+
+[node name="Menubt" type="Button" parent="UI/pause_menu/TextureRect"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 350.9091
+offset_right = 362.72726
+offset_bottom = 395.45453
+
+[node name="Resumebt" type="Button" parent="UI/pause_menu/TextureRect"]
+layout_mode = 0
+offset_left = 139.09091
+offset_top = 198.1818
+offset_right = 361.81815
+offset_bottom = 244.54544
+
+[node name="Restartbt" type="Button" parent="UI/pause_menu/TextureRect"]
+layout_mode = 0
+offset_left = 138.18182
+offset_top = 275.45453
+offset_right = 361.81815
+offset_bottom = 320.9091
+
+[node name="pause_menu_anim" type="AnimationPlayer" parent="UI/pause_menu"]
+libraries = {
+&"": SubResource("AnimationLibrary_5newe")
+}
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(640, 500)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("6_gee14")
+
+[connection signal="pressed" from="UI/Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="UI/pause_menu/TextureRect/Resumebt" to="." method="_on_resumebt_pressed"]
+[connection signal="pressed" from="UI/pause_menu/TextureRect/Restartbt" to="." method="_on_restartbt_pressed"]

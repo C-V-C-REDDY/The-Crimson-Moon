@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 100.0
+var health = 300.0
 var max_health = 150.0
 var slash_count = 5
 var slash_delay = 0.3

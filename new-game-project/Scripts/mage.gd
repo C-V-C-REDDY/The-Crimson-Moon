@@ -24,6 +24,13 @@ func _physics_process(_delta: float) -> void:
 		return
 	var direction = (luna.global_position - global_position).normalized()
 	var dist = global_position.distance_to(luna.global_position)
+	if luna.is_stealthed:
+		%Label.visible = true
+		return
+	else:
+		%Label.visible = false
+	if GameManager.teleport_active:
+		return
 	# chase luna till shooting range
 	if dist > shoot_range:
 		velocity = direction * speed
@@ -58,6 +65,7 @@ func take_damage(amount: float) -> void:
 	tween.tween_property(self, "modulate", Color(1.16, 0.0, 0.0, 1.0), 0.1)
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.1)
 	if health <= 0:
+		GameManager.kill_count += 1
 		%AnimationPlayer.play("die")
 		await get_tree().create_timer(0.3).timeout
 		if not is_summoned:
