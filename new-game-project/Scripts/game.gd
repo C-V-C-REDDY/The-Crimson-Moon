@@ -30,9 +30,10 @@ func _process(_delta: float) -> void:
 	if GameManager.clover_claimed:
 		%Clover_Claim.play("Clover_claim")
 		await get_tree().create_timer(1.0).timeout
-		%Label.text = str(GameManager.clover_count) + " / 7"
+		%Label.text = " X " + str(GameManager.clover_count)
 		GameManager.clover_claimed = false
-	
+	%kill_lable.text = " X " + str(GameManager.kill_count)
+	%floor_count.text = str(GameManager.current_floor) + " . " + str(GameManager.current_wave) 
 	%Dash.modulate.a = 1.0 if GameManager.mana >= 3 else 0.4
 	%Stealth.modulate.a = 1.0 if GameManager.mana >= 3 else 0.4
 	%Teleport.modulate.a = 1.0 if GameManager.mana >= 3 else 0.4
@@ -50,7 +51,7 @@ func win():
 	var best_sec = int(best) % 60
 	%High_score.text = "%02d:%02d" % [best_min, best_sec]
 	%AnimationPlayer.play("win")
-	GameManager.reset()
+
 
 
 func loose():
@@ -62,7 +63,7 @@ func loose():
 	%Clover_count.text = str(int(GameManager.clover_count))
 	%Kill_count.text = str(int(GameManager.kill_count))
 	%Looseanim.play("loose")
-	GameManager.reset()
+
 
 
 func _on_pause_pressed() -> void:
@@ -80,3 +81,33 @@ func _on_restartbt_pressed() -> void:
 	get_tree().reload_current_scene()
 	GameManager.reset()
 	%pause_menu.visible = false
+
+
+func _on_restartbtdie_pressed() -> void:
+	#if get_tree().paused:
+	get_tree().paused = false
+	#%Die.visible = false
+	get_tree().reload_current_scene()
+	GameManager.reset()
+	#%Die.visible = false
+
+
+
+
+func _on_restartwin_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+	GameManager.reset()
+
+
+func _on_menuwin_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")
+
+
+func _on_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")
+
+
+func _on_menubt_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")

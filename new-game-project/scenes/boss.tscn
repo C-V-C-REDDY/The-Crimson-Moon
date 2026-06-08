@@ -87,7 +87,7 @@ show_percentage = false
 
 [node name="wait_timer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 10.0
+wait_time = 5.0
 autostart = true
 
 [node name="Hitbox" type="Area2D" parent="." groups=["enemy_hitbox"]]

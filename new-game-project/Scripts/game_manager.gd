@@ -58,10 +58,10 @@ var floor_data = {
 		{3: 2}
 	],
 	5: [
-		{3: 2},
-		{3: 1},
-		{3: 1},
-		{3: 2}
+		{3: 2, 2: 1},
+		{3: 1, 2: 1},
+		{3: 1, 2: 1},
+		{3: 2, 2: 1, 1: 2}
 	],
 	6: [
 		{0: 5},
@@ -279,3 +279,4 @@ func reset():
 	time = 0.0
 	clover_count = 0
 	floor_trasitioning = false
+	boss_killed = false

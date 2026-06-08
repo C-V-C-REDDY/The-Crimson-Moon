@@ -75,13 +75,13 @@ func _physics_process(delta: float) -> void:
 	if GameManager.teleport_active:
 		return
 	var direction = Vector2.ZERO
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("right"):
 		direction.x += 1
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("left"):
 		direction.x -= 1
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("up"):
 		direction.y -= 1
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("down"):
 		direction.y += 1 
 	shoot_timer -= delta
 	if Input.is_action_just_pressed("shoot") and shoot_timer <= 0.0:

@@ -32,6 +32,7 @@ func _ready() -> void:
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("luna"):
+		get_tree().get_first_node_in_group("luna").play_hit()
 		GameManager.current_health -= damage
 
 func take_damage(amount: float) -> void:

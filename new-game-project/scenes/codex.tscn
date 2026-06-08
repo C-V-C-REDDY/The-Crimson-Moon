@@ -1,0 +1,188 @@
+[gd_scene load_steps=9 format=3 uid="uid://hrm5thmoriwo"]
+
+[ext_resource type="Script" uid="uid://c5t56tqmto02j" path="res://Scripts/codex.gd" id="1_ciral"]
+[ext_resource type="FontFile" uid="uid://dc2o8oolrj2pq" path="res://assets/sprites/MetalMania-Regular.ttf" id="1_jco8u"]
+[ext_resource type="FontFile" uid="uid://bc137dwgoojci" path="res://assets/sprites/DynamicFont.ttf" id="2_2glps"]
+[ext_resource type="Texture2D" uid="uid://di0f8etxhddv6" path="res://assets/sprites/Gemini_Generated_Image_9nkrca9nkrca9nkr-removebg-preview.png" id="4_ciral"]
+[ext_resource type="Texture2D" uid="uid://btle6vdm6vlnw" path="res://assets/sprites/Gemini_Generated_Image_bvbawtbvbawtbvba-removebg-preview.png" id="5_gl2es"]
+
+[sub_resource type="Animation" id="Animation_gl2es"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-41, -8), Vector2(-41, -18), Vector2(-41, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(407, 560), Vector2(407, 550), Vector2(407, 560)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Para:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(277, 173), Vector2(277, 163), Vector2(277, 173)]
+}
+
+[sub_resource type="Animation" id="Animation_6rkj0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-41, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(407, 560)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Para:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(277, 173)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oypqh"]
+_data = {
+&"RESET": SubResource("Animation_6rkj0"),
+&"idle": SubResource("Animation_gl2es")
+}
+
+[node name="Codex" type="Node"]
+script = ExtResource("1_ciral")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Label" parent="."]
+modulate = Color(1, 0.20999998, 0.20999998, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.0
+offset_right = 148.0
+offset_bottom = 34.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_jco8u")
+theme_override_font_sizes/font_size = 29
+text = "The Crimson Moon | V1.0"
+
+[node name="Para" type="Label" parent="."]
+offset_left = 277.0
+offset_top = 173.0
+offset_right = 1035.0
+offset_bottom = 577.0005
+theme_override_fonts/font = ExtResource("2_2glps")
+theme_override_font_sizes/font_size = 26
+text = "The Crimson Moon rises once every age —and when it does, 
+the dungeon beneath it stirs. 
+Seven floors of ancient darkness, each deeper and colder than the last. 
+Luna, the Moon Elemental, descends alone. Not to conquer. 
+To reclaim what was taken.
+At the bottom waits something that should never have woken.
+The Clovers of Medusa scattered through the dark
+are her only allies. Use them wisely.
+The dungeon does not forgive."
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -233.0
+offset_top = -160.0
+offset_right = 240.0
+offset_bottom = -137.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_2glps")
+theme_override_font_sizes/font_size = 17
+text = "Developed by C.V.C Reddy  |  Build v1.0  |  Made with Godot 4"
+
+[node name="bg" type="TextureRect" parent="."]
+z_index = -1
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -681.0
+offset_top = -368.0
+offset_right = -12.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("4_ciral")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_oypqh")
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -104.0
+offset_top = 2.9999998
+offset_right = 396.0
+offset_bottom = 503.0
+grow_horizontal = 0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("5_gl2es")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

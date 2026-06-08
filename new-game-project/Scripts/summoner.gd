@@ -12,7 +12,7 @@ var enemy_scenes = [
 	preload("res://scenes/Melle.tscn"),
 	preload("res://scenes/ninja.tscn")
 ]
-var health = 50.0
+var health = 30.0
 var is_freeze = false
 
 func _ready() -> void:

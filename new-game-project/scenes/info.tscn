@@ -1,0 +1,353 @@
+[gd_scene load_steps=29 format=3 uid="uid://clqj4gsoxb8yg"]
+
+[ext_resource type="Script" uid="uid://lltyhssryv0" path="res://Scripts/info.gd" id="1_6bwct"]
+[ext_resource type="Texture2D" uid="uid://x52yktdui0vr" path="res://assets/sprites/Luna_Boss.png" id="1_hsacm"]
+[ext_resource type="FontFile" uid="uid://dc2o8oolrj2pq" path="res://assets/sprites/MetalMania-Regular.ttf" id="1_noc0f"]
+[ext_resource type="Texture2D" uid="uid://dly665r6fyadd" path="res://assets/sprites/Stealth.png" id="2_noc0f"]
+[ext_resource type="Texture2D" uid="uid://c6sbboi45fxtb" path="res://assets/sprites/Teleport.png" id="3_wqi3p"]
+[ext_resource type="Texture2D" uid="uid://ddk0yx2icavhi" path="res://assets/sprites/Dash.png" id="4_6bwct"]
+[ext_resource type="Texture2D" uid="uid://1mfk3g1x0co0" path="res://assets/sprites/Melle.png" id="5_fp8dd"]
+[ext_resource type="Texture2D" uid="uid://dgvpk7kn4wt8y" path="res://assets/sprites/Rusher.png" id="6_3p74b"]
+[ext_resource type="Texture2D" uid="uid://tbo7imdss0qb" path="res://assets/sprites/Mage.png" id="7_3p46s"]
+[ext_resource type="Texture2D" uid="uid://c8bj4h07kas3x" path="res://assets/sprites/Summoner.png" id="8_7ytsi"]
+[ext_resource type="Texture2D" uid="uid://btle6vdm6vlnw" path="res://assets/sprites/Gemini_Generated_Image_bvbawtbvbawtbvba-removebg-preview.png" id="10_wqi3p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsc3n"]
+atlas = ExtResource("5_fp8dd")
+region = Rect2(0, 0, 112, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sii4c"]
+atlas = ExtResource("5_fp8dd")
+region = Rect2(112, 0, 112, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61rir"]
+atlas = ExtResource("5_fp8dd")
+region = Rect2(224, 0, 112, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro675"]
+atlas = ExtResource("5_fp8dd")
+region = Rect2(336, 0, 112, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3pe7"]
+atlas = ExtResource("5_fp8dd")
+region = Rect2(448, 0, 112, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efmte"]
+atlas = ExtResource("5_fp8dd")
+region = Rect2(560, 0, 112, 369)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oq0du"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsc3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sii4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61rir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ro675")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3pe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efmte")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txr6y"]
+atlas = ExtResource("6_3p74b")
+region = Rect2(0, 0, 223, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0uon"]
+atlas = ExtResource("6_3p74b")
+region = Rect2(223, 0, 223, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjvpb"]
+atlas = ExtResource("6_3p74b")
+region = Rect2(446, 0, 223, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uaugt"]
+atlas = ExtResource("6_3p74b")
+region = Rect2(0, 186, 223, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4jri"]
+atlas = ExtResource("6_3p74b")
+region = Rect2(223, 186, 223, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8d1yg"]
+atlas = ExtResource("6_3p74b")
+region = Rect2(446, 186, 223, 186)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_he6b6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txr6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0uon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjvpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uaugt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4jri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8d1yg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="Animation" id="Animation_wqi3p"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-72, 75), Vector2(-72, 65), Vector2(-72, 75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect7:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.55, 0.55), Vector2(0.5, 0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect8:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.5254902), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6bwct"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-72, 75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect7:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect8:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fp8dd"]
+_data = {
+&"RESET": SubResource("Animation_6bwct"),
+&"idle": SubResource("Animation_wqi3p")
+}
+
+[node name="Info" type="Node"]
+script = ExtResource("1_6bwct")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = -1
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0, 1, 1, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.5
+offset_right = 176.5
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_noc0f")
+theme_override_font_sizes/font_size = 28
+text = "The Crimson Moon | INFO"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -72.0
+offset_top = 75.0
+offset_right = 605.0
+offset_bottom = 444.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_hsacm")
+
+[node name="luna" type="Label" parent="."]
+modulate = Color(0, 1, 1, 1)
+offset_left = 68.0
+offset_top = 342.0
+offset_right = 354.0
+offset_bottom = 474.0
+theme_override_fonts/font = ExtResource("1_noc0f")
+theme_override_font_sizes/font_size = 17
+text = "LUNA 
+Controls : WASD
+Abilities : Stealth -> x key(3 mana)
+                  Teleport -> c key(5 mana)
+                  Dash -> z key(3 mana)"
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 37.0
+offset_top = 478.0
+offset_right = 537.0
+offset_bottom = 978.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_noc0f")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = 97.0
+offset_top = 478.0
+offset_right = 774.0
+offset_bottom = 847.0
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("3_wqi3p")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+offset_left = 254.0
+offset_top = 478.0
+offset_right = 754.0
+offset_bottom = 978.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_6bwct")
+
+[node name="TextureRect5" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(524, 237)
+sprite_frames = SubResource("SpriteFrames_oq0du")
+frame_progress = 0.23941156
+flip_h = true
+
+[node name="TextureRect6" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(736, 232)
+sprite_frames = SubResource("SpriteFrames_he6b6")
+frame_progress = 0.57784504
+flip_h = true
+
+[node name="TextureRect7" type="TextureRect" parent="."]
+offset_left = 768.0
+offset_top = 131.0
+offset_right = 1445.0
+offset_bottom = 500.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_3p46s")
+flip_h = true
+
+[node name="TextureRect8" type="TextureRect" parent="."]
+offset_left = 923.99994
+offset_top = 67.99999
+offset_right = 1601.0
+offset_bottom = 437.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("8_7ytsi")
+
+[node name="Label2" type="Label" parent="."]
+modulate = Color(0.7708395, 0.77083945, 0.77083945, 1)
+offset_left = 411.0
+offset_top = 351.0
+offset_right = 610.0
+offset_bottom = 374.0
+theme_override_fonts/font = ExtResource("1_noc0f")
+text = "Only Close Range Attacks "
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color(0, 0.36225665, 0.45750976, 1)
+offset_left = 634.0
+offset_top = 349.0
+offset_right = 833.0
+offset_bottom = 372.0
+theme_override_fonts/font = ExtResource("1_noc0f")
+text = "Rushes Towards
+ Luna at full speed"
+
+[node name="Label4" type="Label" parent="."]
+modulate = Color(0, 0.3137255, 1, 1)
+offset_left = 857.0
+offset_top = 347.0
+offset_right = 1056.0
+offset_bottom = 396.0
+theme_override_fonts/font = ExtResource("1_noc0f")
+text = "Throws Blue Orbs
+ Towards Luna  "
+
+[node name="Label5" type="Label" parent="."]
+modulate = Color(1, 0.52, 0.52, 1)
+offset_left = 1032.0
+offset_top = 338.0
+offset_right = 1322.0
+offset_bottom = 413.0
+theme_override_fonts/font = ExtResource("1_noc0f")
+text = "Summons Random Enemies. 
+Summons Will be Killed 
+If Owner is Killed after 
+Floor completes"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_fp8dd")
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 1229.0001
+offset_right = 1729.0001
+offset_bottom = 500.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("10_wqi3p")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
