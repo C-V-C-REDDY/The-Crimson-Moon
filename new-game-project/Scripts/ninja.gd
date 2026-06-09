@@ -5,6 +5,8 @@ var damage = 5
 var health = 10.0
 var is_summoned = false
 var is_freeze = false
+
+
 func _physics_process(_delta: float) -> void:
 	if is_freeze:
 		return
@@ -26,28 +28,34 @@ func _physics_process(_delta: float) -> void:
 	else:
 		%NinjaAnim.flip_h = false
 
+
 func _ready() -> void:
 	add_to_group("enemies")
 	%HitBox.add_to_group("enemy_hit")
+
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("luna"):
 		get_tree().get_first_node_in_group("luna").play_hit()
 		GameManager.current_health -= damage
 
+
 func take_damage(amount: float) -> void:
+	Audio.play_enemy_hurt()
 	health -= amount
 	%ProgressBar.value = health
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(1.16, 0.0, 0.0, 1.0), 0.1)
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.1)
 	if health <= 0:
+		Audio.play_enemy_die()
 		GameManager.kill_count += 1
 		%AnimationPlayer.play("die")
 		await get_tree().create_timer(0.3).timeout
 		if not is_summoned:
 			GameManager.enemy_killed()
 		queue_free()
+
 
 func freeze() -> void:
 	is_freeze = true

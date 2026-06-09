@@ -123,6 +123,7 @@ func _physics_process(delta: float) -> void:
 #DASH---
 
 func use_dash() -> void:
+	Audio.play_dash()
 	var nearest = get_nearest_enemy()
 	if nearest:
 		dash_direction = (nearest.global_position - global_position).normalized()
@@ -163,6 +164,7 @@ func get_nearest_enemy() -> Node2D:
 #STEALTH---
 
 func use_stealth() -> void:
+	Audio.play_stealth()
 	is_stealthed = true
 	stealth_timer = stealth_duration
 	current_mana -= STEALTH_COST
@@ -177,6 +179,7 @@ func use_teleport() -> void:
 
 
 func teleport_to(target_pos: Vector2) -> void:
+	Audio.play_teleport()
 	global_position = target_pos
 	get_tree().paused = false
 
@@ -186,6 +189,7 @@ func teleport_to(target_pos: Vector2) -> void:
 
 
 func play_hit():
+	Audio.play_luna_hurt()
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(1.5, 0.2, 0.2), 0.1)
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.2)
@@ -198,6 +202,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 
 func shoot() -> void:
+	Audio.play_luna_throw()
 	var ice_shard = ice_scene.instantiate()
 	ice_shard.direction = (get_global_mouse_position() - global_position ).normalized()
 	ice_shard.global_position = global_position

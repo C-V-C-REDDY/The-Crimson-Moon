@@ -83,7 +83,6 @@ func _process(delta: float) -> void:
 	time += delta
 
 
-
 func start_floor(floor_num: int) -> void:
 	current_floor = floor_num
 	current_wave = 0
@@ -134,6 +133,7 @@ func spawn_summoned_enemy(scene) -> void:
 	enemy.is_summoned = true
 	get_tree().current_scene.add_child(enemy)
 
+
 func get_random_spawn_pos() -> Vector2:
 	var attempts = 0
 	var pos = Vector2.ZERO
@@ -157,6 +157,7 @@ func get_enemy_scene(index: int) -> PackedScene:
 		3: return summoner_scene
 	return melle_scene
 
+
 func enemy_killed() -> void:
 	if floor_trasitioning:
 		return
@@ -176,10 +177,12 @@ func enemy_killed() -> void:
 func update_mana(value: float) -> void:
 	mana = value
 
+
 func spawn_clover() -> void:
 	var clover = clover_scene.instantiate()
 	clover.global_position = clover_pos
 	get_tree().current_scene.add_child(clover)
+
 
 func floor_complete() -> void:
 	var moon = get_tree().get_first_node_in_group("moon")
@@ -205,18 +208,12 @@ func switch_floor() -> void:
 	enemies_killed = 0
 	clover_claimed = false
 	enemies_alive = 0
-	#update_moon()
 	var luna = get_tree().get_first_node_in_group("luna")
 	luna.global_position = Vector2(640, 666)
 	floor_trasitioning = false
-	#for enemy in get_tree().get_nodes_in_group("enemies"):
-		#enemy.queue_free()
-	
 	start_floor(current_floor)
 
-#func upadate_moon() -> void:
-	#if current_floor <= moon_textures.size():
-		#
+
 func show_teleport_cursor():
 	teleport_active = true
 
@@ -244,12 +241,9 @@ func spawn_floor7_summoners() -> void:
 		queue_free()
 		return
 	var s1 = summoner_scene.instantiate()
-	var s2 = summoner_scene.instantiate()
 	s1.global_position = get_random_spawn_pos()
-	s2.global_position = get_random_spawn_pos()
 	get_tree().current_scene.add_child(s1)
-	get_tree().current_scene.add_child(s2)
-	await get_tree().create_timer(30.0).timeout
+	await get_tree().create_timer(20.0).timeout
 	spawn_floor7_summoners()
 
 

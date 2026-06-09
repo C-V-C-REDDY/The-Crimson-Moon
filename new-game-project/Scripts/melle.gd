@@ -5,6 +5,8 @@ var damage = 1
 var health = 20.0
 var is_summoned = false
 var is_freeze = false
+
+
 func _ready():
 	# Breathe
 	var tween = create_tween().set_loops()
@@ -15,6 +17,7 @@ func _ready():
 	var tween2 = create_tween().set_loops()
 	tween2.tween_property(self, "modulate", Color(1.2, 1.2, 1.4), 1.0)
 	tween2.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 1.0)
+
 
 func _physics_process(_delta: float) -> void:
 	if is_freeze:
@@ -37,8 +40,6 @@ func _physics_process(_delta: float) -> void:
 		%MelleAnim.flip_h = true
 	else:
 		%MelleAnim.flip_h = false
-	
-	
 
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
@@ -49,14 +50,15 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 		%MelleAnim.play("Attack")
 
 
-
 func take_damage(amount: float) -> void:
 	health -= amount
+	Audio.play_enemy_hurt()
 	%ProgressBar.value = health
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(1.16, 0.0, 0.0, 1.0), 0.1)
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.1)
 	if health <= 0:
+		Audio.play_enemy_die()
 		GameManager.kill_count += 1
 		%AnimationPlayer.play("die")
 		await get_tree().create_timer(0.3).timeout

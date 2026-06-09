@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c67a6mjvhl1p3"]
+[gd_scene load_steps=16 format=3 uid="uid://c67a6mjvhl1p3"]
 
 [ext_resource type="Script" uid="uid://drfmh672fjhaf" path="res://Scripts/start_screen.gd" id="1_ka6nf"]
 [ext_resource type="Texture2D" uid="uid://d0yptkg5mig35" path="res://assets/sprites/Luna2.png" id="1_o30b1"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://dc2o8oolrj2pq" path="res://assets/sprites/MetalMania-Regular.ttf" id="7_ws7p0"]
 [ext_resource type="Texture2D" uid="uid://4ubhgqrjd5j1" path="res://assets/sprites/StartUI.png" id="9_ecdxc"]
 [ext_resource type="Texture2D" uid="uid://c6mhr8xdohprm" path="res://assets/sprites/clover.png" id="9_ws7p0"]
+[ext_resource type="PackedScene" uid="uid://baatuohclbc0o" path="res://scenes/audio.tscn" id="10_ecdxc"]
 
 [sub_resource type="Animation" id="Animation_ka6nf"]
 length = 0.001
@@ -571,10 +572,10 @@ libraries = {
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -5
-offset_left = 14.0
+offset_left = -4.0
 offset_top = 4.0
-offset_right = 1304.0
-offset_bottom = 725.0
+offset_right = 1276.0
+offset_bottom = 724.0
 color = Color(3.6098063e-06, 0.11942298, 0.38352007, 1)
 
 [node name="StartBt" type="Button" parent="."]
@@ -652,6 +653,8 @@ texture = ExtResource("9_ecdxc")
 position = Vector2(850, 530)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_ecdxc")
+
+[node name="Audio" parent="." instance=ExtResource("10_ecdxc")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="StartBt" to="." method="_on_start_bt_pressed"]

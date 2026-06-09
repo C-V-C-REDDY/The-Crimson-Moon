@@ -2,7 +2,8 @@ extends Area2D
 
 var speed = 400.0
 var direction = Vector2.ZERO
-var damage = 10.0
+var damage = 20.0
+
 
 func _ready() -> void:
 	add_to_group("enemy_hitbox")

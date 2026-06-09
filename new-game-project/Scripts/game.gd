@@ -1,9 +1,11 @@
 extends Node
 
 func _ready() -> void:
+	GameManager.reset()
 	%HpFAnim.play("idle")
 	%CloverAnim.play("clover")
 	GameManager.start_floor(1)
+	Audio.play_ingame_bgm()
 
 func _process(_delta: float) -> void:
 	if not is_instance_valid(GameManager):
@@ -25,6 +27,7 @@ func _process(_delta: float) -> void:
 			GameManager.teleport_active = false
 			cursor.visible = false
 			get_tree().get_first_node_in_group("luna").teleport_to(world_pos)
+	
 	%Mana_bar.value = GameManager.mana
 	%HpBar.value = GameManager.current_health
 	if GameManager.clover_claimed:
@@ -37,6 +40,8 @@ func _process(_delta: float) -> void:
 	%Dash.modulate.a = 1.0 if GameManager.mana >= 3 else 0.4
 	%Stealth.modulate.a = 1.0 if GameManager.mana >= 3 else 0.4
 	%Teleport.modulate.a = 1.0 if GameManager.mana >= 3 else 0.4
+
+#Win 
 
 func win():
 	get_tree().paused = true
@@ -53,6 +58,7 @@ func win():
 	%AnimationPlayer.play("win")
 
 
+#Die 
 
 func loose():
 	get_tree().paused = true
@@ -64,50 +70,65 @@ func loose():
 	%Kill_count.text = str(int(GameManager.kill_count))
 	%Looseanim.play("loose")
 
-
+#Pause ----
 
 func _on_pause_pressed() -> void:
+	Audio.play_click()
 	get_tree().paused = true
 	%pause_menu.visible = true
 
+#Pause Menu -> Resume --
 
 func _on_resumebt_pressed() -> void:
+	Audio.play_click()
 	get_tree().paused = false
 	%pause_menu.visible = false
 
+#Pause Menu -> Restart --
 
 func _on_restartbt_pressed() -> void:
+	Audio.play_click()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 	GameManager.reset()
 	%pause_menu.visible = false
 
+#Die Screen -> Restart --
 
 func _on_restartbtdie_pressed() -> void:
-	#if get_tree().paused:
+	Audio.play_click()
 	get_tree().paused = false
-	#%Die.visible = false
 	get_tree().reload_current_scene()
 	GameManager.reset()
-	#%Die.visible = false
 
 
-
+#Win Screen -> Restart --
 
 func _on_restartwin_pressed() -> void:
+	Audio.play_click()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 	GameManager.reset()
 
+#Win Screen -> Menu --
 
 func _on_menuwin_pressed() -> void:
+	Audio.play_click()
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")
+	%Win.visible = false
 
+#Die Screen -> Menu --
 
 func _on_menu_pressed() -> void:
+	#GameManager.reset()
+	Audio.play_click()
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")
 
+#Pause Menu -> Menu --
 
 func _on_menubt_pressed() -> void:
+	Audio.play_click()
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")

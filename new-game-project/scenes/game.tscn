@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://yicge48108e0"]
+[gd_scene load_steps=40 format=3 uid="uid://yicge48108e0"]
 
 [ext_resource type="Script" uid="uid://bfuxyjqdes301" path="res://Scripts/game.gd" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://bdi0nuw7dhuip" path="res://scenes/luna.tscn" id="1_uwrxv"]
@@ -16,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://quycme5mkqff" path="res://assets/sprites/Gemini_Generated_Image_sub6wysub6wysub6-removebg-preview.png" id="14_trtic"]
 [ext_resource type="Texture2D" uid="uid://cdcim10j84623" path="res://assets/sprites/Gemini_Generated_Image_oz3xxxoz3xxxoz3x-removebg-preview.png" id="15_ir15t"]
 [ext_resource type="FontFile" uid="uid://dc2o8oolrj2pq" path="res://assets/sprites/MetalMania-Regular.ttf" id="16_ca42v"]
+[ext_resource type="FontFile" uid="uid://bc137dwgoojci" path="res://assets/sprites/DynamicFont.ttf" id="18_1kice"]
+[ext_resource type="PackedScene" uid="uid://baatuohclbc0o" path="res://scenes/audio.tscn" id="18_264po"]
 [ext_resource type="Texture2D" uid="uid://cchbxakgqqr83" path="res://assets/sprites/Gemini_Generated_Image_d9awyjd9awyjd9aw-removebg-preview.png" id="18_ssvqc"]
 
 [sub_resource type="Animation" id="Animation_p57ef"]
@@ -680,11 +682,40 @@ offset_bottom = 649.0
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("18_ssvqc")
 
+[node name="Label2" type="Label" parent="UI"]
+z_index = -1
+offset_left = 197.0
+offset_top = 690.0
+offset_right = 237.0
+offset_bottom = 713.0
+theme_override_fonts/font = ExtResource("18_1kice")
+text = "C"
+
+[node name="Label3" type="Label" parent="UI"]
+z_index = -1
+offset_left = 125.0
+offset_top = 690.0
+offset_right = 165.0
+offset_bottom = 713.0
+theme_override_fonts/font = ExtResource("18_1kice")
+text = "X"
+
+[node name="Label4" type="Label" parent="UI"]
+z_index = -1
+offset_left = 50.0
+offset_top = 690.0
+offset_right = 90.0
+offset_bottom = 713.0
+theme_override_fonts/font = ExtResource("18_1kice")
+text = "Z"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(640, 500)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("6_gee14")
+
+[node name="Audio" parent="." instance=ExtResource("18_264po")]
 
 [connection signal="pressed" from="UI/Win/TextureRect/restartwin" to="." method="_on_restartwin_pressed"]
 [connection signal="pressed" from="UI/Win/TextureRect/menuwin" to="." method="_on_menuwin_pressed"]

@@ -1,0 +1,64 @@
+[gd_scene load_steps=14 format=3 uid="uid://baatuohclbc0o"]
+
+[ext_resource type="AudioStream" uid="uid://decexonre53im" path="res://audio/Beneath_the_Winter_Velvet.mp3" id="1_bwtr5"]
+[ext_resource type="Script" uid="uid://8gi8aj6dh4db" path="res://Scripts/audio.gd" id="1_dl6it"]
+[ext_resource type="AudioStream" uid="uid://b1mpxlvgy8qtx" path="res://audio/Crest_of_the_Winter_Throne.mp3" id="2_f5a2e"]
+[ext_resource type="AudioStream" uid="uid://db3u2cabuulgg" path="res://audio/Boss_laugh.wav" id="3_wdljl"]
+[ext_resource type="AudioStream" uid="uid://dweeyds2dntv0" path="res://audio/enemy_hurt.wav" id="4_dl6it"]
+[ext_resource type="AudioStream" uid="uid://0na2gly6i45k" path="res://audio/Stealth.wav" id="5_8kkbo"]
+[ext_resource type="AudioStream" uid="uid://dfjiiib7s4ljt" path="res://audio/Clover.wav" id="6_8kkbo"]
+[ext_resource type="AudioStream" uid="uid://bf65lne200hmr" path="res://audio/enemy_kill.wav" id="7_3g2y6"]
+[ext_resource type="AudioStream" uid="uid://c8ysvmfrqewj3" path="res://audio/luna_hurt.wav" id="9_8ou3m"]
+[ext_resource type="AudioStream" uid="uid://bvyrg6nxrgmb7" path="res://audio/luna_throw.wav" id="10_iynmv"]
+[ext_resource type="AudioStream" uid="uid://ben2jh6pd17tg" path="res://audio/teleport.wav" id="11_ggveo"]
+[ext_resource type="AudioStream" uid="uid://bqyhf7dohg1e6" path="res://audio/dash.wav" id="12_nwc8s"]
+[ext_resource type="AudioStream" uid="uid://cbtiv18gkxspw" path="res://audio/click.wav" id="13_bf4yj"]
+
+[node name="Audio" type="Node2D"]
+script = ExtResource("1_dl6it")
+
+[node name="Start_BMG" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_bwtr5")
+bus = &"BGM"
+parameters/looping = true
+
+[node name="In_game_bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_f5a2e")
+volume_db = -20.0
+bus = &"BGM"
+parameters/looping = true
+
+[node name="Boss_laugh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wdljl")
+bus = &"SFX"
+
+[node name="enemy_hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dl6it")
+bus = &"SFX"
+
+[node name="Clover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_8kkbo")
+bus = &"SFX"
+
+[node name="enemy_kill" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3g2y6")
+bus = &"SFX"
+
+[node name="stealth" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8kkbo")
+bus = &"SFX"
+
+[node name="luna_hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_8ou3m")
+
+[node name="luna_throw" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_iynmv")
+
+[node name="teleport" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ggveo")
+
+[node name="dash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_nwc8s")
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_bf4yj")

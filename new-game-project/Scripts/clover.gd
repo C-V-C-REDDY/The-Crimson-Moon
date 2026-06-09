@@ -8,6 +8,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("luna"):
+		Audio.play_clover()
 		GameManager.clover_claimed = true
 		GameManager.mana += 5.0
 		GameManager.clover_count += 1

@@ -5,4 +5,5 @@ func _ready() -> void:
 
 
 func _on_texture_button_pressed() -> void:
+	Audio.play_click()
 	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")

@@ -15,6 +15,7 @@ var enemy_scenes = [
 var health = 30.0
 var is_freeze = false
 
+
 func _ready() -> void:
 	modulate.a = 0.5
 	var tween = create_tween()
@@ -69,19 +70,24 @@ func summon_enemy() -> void:
 	get_tree().current_scene.add_child(enemy)
 	summoned_count += 1
 	enemy.tree_exited.connect(func(): summoned_count -= 1)
-	
+
+
+
 func take_damage(amount: float) -> void:
+	Audio.play_enemy_hurt()
 	health -= amount
 	%ProgressBar.value = health
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(1.16, 0.0, 0.0, 1.0), 0.1)
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.1)
 	if health <= 0:
+		Audio.play_enemy_die()
 		GameManager.kill_count += 1
 		%AnimationPlayer.play("die")
 		await get_tree().create_timer(0.3).timeout
 		queue_free()
 		GameManager.enemy_killed()
+
 
 func freeze() -> void:
 	is_freeze = true

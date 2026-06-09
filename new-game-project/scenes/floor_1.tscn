@@ -1,106 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://brrmw7gk2yrkq"]
+[gd_scene load_steps=16 format=3 uid="uid://brrmw7gk2yrkq"]
 
-[ext_resource type="Texture2D" uid="uid://7uvm8lnjsey3" path="res://assets/sprites/doors_lever_chest_animation.png" id="1_425vd"]
 [ext_resource type="Script" uid="uid://dm5q0v0rpkyhx" path="res://scenes/floor_1.gd" id="1_sg3qp"]
 [ext_resource type="Texture2D" uid="uid://jj0uu3268b3g" path="res://assets/sprites/Moon1.png" id="3_s8rno"]
 [ext_resource type="Texture2D" uid="uid://c8cv1nhj216f3" path="res://assets/sprites/fire_animation.png" id="3_sg3qp"]
 [ext_resource type="Texture2D" uid="uid://buts21gbjk3o0" path="res://assets/sprites/deco2.png" id="4_sg3qp"]
-[ext_resource type="Texture2D" uid="uid://d1ch0t0qltoxk" path="res://assets/sprites/deco3.png" id="6_2mdf6"]
 
 [sub_resource type="TileSet" id="TileSet_dwxbp"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2mdf6"]
-atlas = ExtResource("1_425vd")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xtmew"]
-atlas = ExtResource("1_425vd")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_31hr6"]
-atlas = ExtResource("1_425vd")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7x2hd"]
-atlas = ExtResource("1_425vd")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pkyk8"]
-atlas = ExtResource("1_425vd")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_y1s0d"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2mdf6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xtmew")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_31hr6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7x2hd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pkyk8")
-}],
-"loop": false,
-"name": &"Door",
-"speed": 2.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_onrg3"]
-atlas = ExtResource("3_sg3qp")
-region = Rect2(132, 0, 44, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0dlj7"]
-atlas = ExtResource("3_sg3qp")
-region = Rect2(132, 48, 44, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_unlte"]
-atlas = ExtResource("3_sg3qp")
-region = Rect2(132, 96, 44, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3ddov"]
-atlas = ExtResource("3_sg3qp")
-region = Rect2(132, 144, 44, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yacar"]
-atlas = ExtResource("3_sg3qp")
-region = Rect2(132, 192, 44, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_go15y"]
-atlas = ExtResource("3_sg3qp")
-region = Rect2(132, 240, 44, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_s4g8o"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_onrg3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0dlj7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_unlte")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3ddov")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yacar")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_go15y")
-}],
-"loop": true,
-"name": &"fire2",
-"speed": 5.0
-}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y1s0d"]
 atlas = ExtResource("3_sg3qp")
@@ -206,45 +111,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="DoorAnimation" type="AnimatedSprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-position = Vector2(640, 686)
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_y1s0d")
-animation = &"Door"
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-modulate = Color(1, 0.13, 0.13, 1)
-position = Vector2(605, 624)
-sprite_frames = SubResource("SpriteFrames_s4g8o")
-animation = &"fire2"
-frame_progress = 0.025686992
-
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-modulate = Color(1, 0.13, 0.13, 1)
-position = Vector2(679, 625)
-sprite_frames = SubResource("SpriteFrames_s4g8o")
-animation = &"fire2"
-frame_progress = 0.028654052
-
 [node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(580, 632)
 sprite_frames = SubResource("SpriteFrames_6j26s")
 animation = &"light"
-frame_progress = 0.6712027
+frame_progress = 0.26420832
 
 [node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(720, 634)
 sprite_frames = SubResource("SpriteFrames_6j26s")
 animation = &"light"
-frame_progress = 0.29467937
+frame_progress = 0.37407225
 
 [node name="Moon" type="Sprite2D" parent="." groups=["moon"]]
 unique_name_in_owner = true
@@ -267,12 +146,6 @@ texture = ExtResource("4_sg3qp")
 position = Vector2(711, 684)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_sg3qp")
-
-[node name="Deco3" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(627, 348)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("6_2mdf6")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(0, 62)

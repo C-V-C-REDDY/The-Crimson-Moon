@@ -14,6 +14,7 @@ func _ready() -> void:
 	%wait_timer.timeout.connect(launch_slash_storm)
 
 func launch_slash_storm() -> void:
+	Audio.play_boss_laugh()
 	for i in slash_count:
 		await get_tree().create_timer(slash_delay).timeout
 		launch_slash()
@@ -37,6 +38,7 @@ func launch_slash() -> void:
 
 func take_damage(amount) -> void:
 	health -= amount
+	Audio.play_enemy_hurt()
 	%HealthBar.value = health
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(2.0, 2.0, 2.0), 1.0)

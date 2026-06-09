@@ -10,11 +10,14 @@ var health = 30.0
 var is_summoned = false
 var orb_scene = preload("res://scenes/orb.tscn")
 var is_freeze = false
+
+
 func _ready() -> void:
 	# Breathe
 	var tween = create_tween().set_loops()
 	tween.tween_property(self, "scale", Vector2(0.38, 0.38), 0.9)
 	tween.tween_property(self, "scale", Vector2(0.3, 0.3), 0.9)
+
 
 func _physics_process(_delta: float) -> void:
 	if is_freeze:
@@ -47,30 +50,36 @@ func _physics_process(_delta: float) -> void:
 	else:
 		%Mage.flip_h = false
 
+
 func shoot(direction: Vector2) -> void:
 	var orb = orb_scene.instantiate()
 	orb.direction = direction
 	orb.global_position = global_position
 	get_tree().current_scene.add_child(orb)
 
+
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("luna"):
 		GameManager.current_health -= damage
 		get_tree().get_first_node_in_group("luna").play_hit()
 
+
 func take_damage(amount: float) -> void:
 	health -= amount
+	Audio.play_enemy_hurt()
 	%ProgressBar.value = health
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(1.16, 0.0, 0.0, 1.0), 0.1)
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.1)
 	if health <= 0:
+		Audio.play_enemy_die()
 		GameManager.kill_count += 1
 		%AnimationPlayer.play("die")
 		await get_tree().create_timer(0.3).timeout
 		if not is_summoned:
 			GameManager.enemy_killed()
 		queue_free()
+
 
 func freeze() -> void:
 	is_freeze = true

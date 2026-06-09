@@ -9,8 +9,6 @@ func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
 
 
-
-
 func _ready() -> void:
 	add_to_group("enemy_hit")
 	await get_tree().create_timer(3.0).timeout
